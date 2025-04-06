@@ -15,7 +15,7 @@
       </div>
       
 
-      <!-- 3 col-->
+      <!-- 3 col status-->
       <div class="grid grid-cols-3 gap-4 mb-4">
          <div class="flex flex-col items-center justify-center h-30 p-4 rounded-lg bg-gray-50 shadow-md">
             <p class="text-lg font-medium text-black">
@@ -43,7 +43,7 @@
          </div>
       </div>
 
-      <!-- 1 col -->
+      <!-- Tenant Status -->
       <div class="flex flex-col h-100 mb-4 rounded-sm bg-gray-50 shadow-md overflow-y-auto">
          <p class="text-lg p-4 text-gray-500">
             Tenant Status
@@ -104,7 +104,7 @@
          </table>
       </div>
 
-      <!-- 2 col -->
+      <!-- Activity logs and Pending tenant Notification -->
       <div class="h-100 grid grid-cols-2 gap-4 mb-4">
 
          <!-- activity logs -->
@@ -124,7 +124,7 @@
                            Domain
                         </th>
                         <th scope="col" class="px-6 py-3">
-                           Request
+                           Event
                         </th>
                         <th scope="col" class="px-6 py-3 whitespace-nowrap">
                            DATE & TIME
@@ -143,7 +143,7 @@
                            buksu.domain.com
                         </td>
                         <td class="px-6 py-4">
-                           GET
+                           update_student
                         </td>
                         <td class="px-6 py-4 whitespace-nowrap">
                            4:05PM 05/04/2025
