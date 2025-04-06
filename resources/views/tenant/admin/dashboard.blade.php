@@ -1,6 +1,6 @@
 @extends('layouts.app')
 
-@section('title', 'Dasboard')
+@section('title', 'ReadSphere:Admin Dasboard')
 @include('tenant.admin.sidebar')
 
 @section('content')

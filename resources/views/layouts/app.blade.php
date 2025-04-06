@@ -4,9 +4,9 @@
         <meta charset="utf-8">
         <meta name="viewport" content="width=device-width, initial-scale=1">
 
-        <title>@yield('title', 'Booking System Management')</title>
-        <link rel="icon" type="image/x-icon" href="{{ asset('favicon.ico') }}">
-
+        <link rel="icon" href="{{ asset('images/ReadSphere_Logo.png') }}" type="image/x-icon">
+        <title>@yield('title', 'ReadSphere: Booking System Management')</title>
+        
         <!-- Fonts -->
         <link rel="preconnect" href="https://fonts.bunny.net">
         <link href="https://fonts.bunny.net/css?family=instrument-sans:400,500,600" rel="stylesheet" />

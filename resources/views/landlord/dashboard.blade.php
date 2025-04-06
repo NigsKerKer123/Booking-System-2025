@@ -1,6 +1,6 @@
 @extends('layouts.app')
 
-@section('title', 'Dasboard')
+@section('title', 'ReadSphere: LandLord Dasboard')
 
 @include('landlord.sidebar')
 @include('landlord.modal')
