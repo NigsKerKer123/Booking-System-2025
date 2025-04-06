@@ -7,13 +7,13 @@
 
 @section('content')
 <div class="p-4 sm:ml-64">
-   <div class="pl-4 pr-2 mt-14 flex justify-end">
+   <div class="pl-4 pr-2 mt-22 flex justify-end">
       <!-- add button -->
          <button type="button" data-modal-target="add-modal" data-modal-toggle="add-modal" class="focus:outline-none text-white bg-green-700 hover:bg-green-800 focus:ring-4 focus:ring-green-300 font-medium rounded-lg text-sm px-5 py-2.5 me-2 mb-2 dark:bg-green-600 dark:hover:bg-green-700 dark:focus:ring-green-800">Add Tenant</button>
    </div>
 
     <div class="p-4">
-        <div class="flex flex-col h-200 mb-4 rounded-sm bg-gray-50 shadow-md overflow-y-auto overflow-x-auto">
+        <div class="flex flex-col h-160 mb-4 rounded-sm bg-gray-50 shadow-md overflow-y-auto overflow-x-auto">
          <div class="flex justify-between items-center">
             <p class="text-lg p-4 text-gray-500">
                Manage Tenants

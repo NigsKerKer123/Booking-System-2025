@@ -5,7 +5,7 @@
 
 @section('content')
 <div class="p-4 sm:ml-64">
-   <div class="p-4 mt-14">
+   <div class="p-4 mt-20">
 
       <!-- generate report -->
       <div class="flex justify-end mb-4">

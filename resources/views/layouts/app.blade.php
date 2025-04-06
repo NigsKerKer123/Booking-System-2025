@@ -21,7 +21,7 @@
             </style>
         @endif
     </head>
-<body>
+<body class="bg-[#E8D8C4]">
     @include('partials.header')
 
     <main>
