@@ -61,16 +61,13 @@
                         Book Title
                      </th>
                      <th scope="col" class="px-6 py-3">
-                        Quantity
+                        Book Author
                      </th>
                      <th scope="col" class="px-6 py-3 whitespace-nowrap">
                         Date Borrowed
                      </th>
                      <th scope="col" class="px-6 py-3 whitespace-nowrap">
                         Due Date
-                     </th>
-                     <th scope="col" class="px-6 py-3 text-center">
-                        Returned Date
                      </th>
                      <th scope="col" class="px-6 py-3 text-center">
                         Action
@@ -89,10 +86,7 @@
                         Pride and Prejudice Jane Austen.
                      </td>
                      <td class="px-6 py-4">
-                        3
-                     </td>
-                     <td class="px-6 py-4 whitespace-nowrap">
-                        4:05PM 05/04/2025
+                        Jane Austen
                      </td>
                      <td class="px-6 py-4 whitespace-nowrap">
                         4:05PM 05/04/2025
@@ -122,7 +116,7 @@
                         <th scope="col" class="px-6 py-3 whitespace-nowrap">
                            Account ID
                         </th>
-                        <th scope="col" class="px-6 py-3">
+                        <th scope="col" class="px-6 py-3 whitespace-nowrap">
                            Student ID
                         </th>
                         <th scope="col" class="px-6 py-3 whitespace-nowrap text-center">
@@ -144,7 +138,7 @@
                         <td class="px-6 py-4 whitespace-nowrap">
                            20120204020
                         </td>
-                        <td class="px-6 py-4">
+                        <td class="px-6 py-4 whitespace-nowrap">
                            update_student
                         </td>
                         <td class="px-6 py-4 whitespace-nowrap">
@@ -173,7 +167,7 @@
                         <th scope="col" class="px-6 py-3 whitespace-nowrap">
                            Account ID
                         </th>
-                        <th scope="col" class="px-6 py-3">
+                        <th scope="col" class="px-6 py-3 whitespace-nowrap">
                            Book ID
                         </th>
                         <th scope="col" class="px-6 py-3 whitespace-nowrap text-center">
