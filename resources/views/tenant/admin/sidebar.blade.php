@@ -71,7 +71,7 @@
             </a>
          </li>
          <li>
-            <a href="" data-modal-target="logout-modal" data-modal-toggle="logout-modal" class="flex items-center p-2 text-white transition duration-75 rounded-lg hover:bg-[#561C24]">
+            <a href="#" data-modal-target="logout-modal" data-modal-toggle="logout-modal" class="flex items-center p-2 text-white transition duration-75 rounded-lg hover:bg-[#561C24]">
                 <svg xmlns="http://www.w3.org/2000/svg" height="24px" viewBox="0 -960 960 960" width="24px" fill="#ffffff"><path d="M200-120q-33 0-56.5-23.5T120-200v-560q0-33 23.5-56.5T200-840h280v80H200v560h280v80H200Zm440-160-55-58 102-102H360v-80h327L585-622l55-58 200 200-200 200Z"/></svg>
                <span class="ms-3">Logout</span>
             </a>
