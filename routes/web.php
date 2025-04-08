@@ -37,6 +37,9 @@ Route::prefix('admin')->group(function () {
     //student
     Route::get('/student', [AdminStudentController::class, 'index'])->name('admin.student.index');
     Route::post('/student/store', [AdminStudentController::class, 'store'])->name('admin.student.store');
+    Route::put('/student/update', [AdminStudentController::class, 'update'])->name('admin.student.update');
+    Route::delete('/student/delete', [AdminStudentController::class, 'destroy'])->name('admin.student.delete');
+
 
     //books
     Route::get('/book', [AdminBookController::class, 'index'])->name('admin.book.index');

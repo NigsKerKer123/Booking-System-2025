@@ -16,7 +16,6 @@ return new class extends Migration
             $table->string('student_id');
             $table->string('name');
             $table->string('email');
-            $table->string('password');
             $table->enum('role', ['student', 'admin'])->default('student');
             $table->string('course');
             $table->string('college');
