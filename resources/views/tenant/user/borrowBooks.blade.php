@@ -1,23 +1,23 @@
 @extends('layouts.app')
 
-@section('title', 'Return Books')
+@section('title', 'Borrow Books')
 
-@include('tenant.admin.sidebar')
+@include('tenant.user.sidebar')
 
 @section('content')
 <div class="p-4 sm:ml-64"> 
     <div class="p-4 mt-22">
         <!-- Borrow Books -->
-        <div class="flex flex-col h-140 mb-4 rounded-sm bg-gray-50 shadow-md overflow-y-auto overflow-x-auto">
+        <div class="flex flex-col h-100 mb-4 rounded-sm bg-gray-50 shadow-md overflow-y-auto overflow-x-auto">
             <div class="flex justify-between items-center">
                 <p class="text-lg p-4 text-gray-500">
-                Borrowed Books
+                Borrow Books
                 </p>
 
                 <div class="mr-4">
                     <form class="flex items-center max-w-lg mx-auto">   
                         <div class="relative w-full"> 
-                            <input type="text" id="search" class="bg-gray-100 border border-gray-500 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5" placeholder="Search Students" required />
+                            <input type="text" id="search" class="bg-gray-100 border border-gray-500 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5" placeholder="Search books" required />
                         </div>
                         <button type="submit" class="inline-flex items-center py-2.5 px-3 ms-2 text-sm font-medium text-white bg-blue-700 rounded-lg border border-blue-700 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300">
                             <svg class="w-4 h-4 me-2" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 20 20">
@@ -28,92 +28,75 @@
                 </div>
             </div>
 
-            <!-- table -->
+            <!-- books table -->
             <table class="w-full text-sm text-left rtl:text-right text-gray-500">
                 <thead class="text-xs text-gray-700 uppercase bg-gray-200">
                     <tr>
                         <th scope="col" class="px-6 py-3 whitespace-nowrap">
-                            Student ID
-                        </th>
-                        <th scope="col" class="px-6 py-3 whitespace-nowrap">
-                            Name
-                        </th>
-                        <th scope="col" class="px-6 py-3 whitespace-nowrap">
-                            College
-                        </th>
-                        <th scope="col" class="px-6 py-3 whitespace-nowrap">
-                            School year
-                        </th>
-                        <th scope="col" class="px-6 py-3 whitespace-nowrap">
                             Book Title
                         </th>
                         <th scope="col" class="px-6 py-3 whitespace-nowrap">
-                            Book Author
+                            Author
                         </th>
                         <th scope="col" class="px-6 py-3 whitespace-nowrap">
-                            Date
+                            Quantity
                         </th>
-                        <th scope="col" class="px-6 py-3 text-center">
+                        <th scope="col" class="px-6 py-3 whitespace-nowrap">
+                            Left
+                        </th>
+                        <th scope="col" class="px-6 py-3 whitespace-nowrap">
+                            Registration Date
+                        </th>
+                        <th scope="col" class="px-6 py-3 whitespace-nowrap text-center">
                             Action
                         </th>
                     </tr>
                 </thead>
                 <tbody>
                     <tr class="bg-white border-b border-gray-200 hover:bg-gray-50">
-                        <th scope="row" class="px-6 py-4 font-medium text-gray-900 whitespace-nowrap">
-                            2123214
-                        </th>
-                        <td class="px-6 py-4 whitespace-nowrap">
-                            Robert Palma
-                        </td>
-                        <td class="px-6 py-4 whitespace-nowrap">
-                            College of Technologies
-                        </td>
-                        <td class="px-6 py-4 whitespace-nowrap">
-                            4
-                        </td>
-                        <td class="px-6 py-4 whitespace-nowrap">
+                        <td class="px-6 py-4">
                             Pride and Prejudice Jane Austen.
                         </td>
                         <td class="px-6 py-4 whitespace-nowrap">
                             Jane Austen
                         </td>
-
+                        <td class="px-6 py-4">
+                            3
+                        </td>
+                        <td class="px-6 py-4">
+                            3
+                        </td>
                         <td class="px-6 py-4 whitespace-nowrap">
-                                4:05PM 05/04/2026
-                            </td>
-                        <td class="px-6 py-4 text-center  whitespace-nowrap">
-                            <button type="button" data-modal-target="manage-modal" data-modal-toggle="manage-modal" class="text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 me-2 mb-2 dark:bg-blue-600 dark:hover:bg-blue-700 focus:outline-none dark:focus:ring-blue-800">Return</button>
+                            4:05PM 05/04/2026
+                        </td>
+                        <td class="px-6 py-4 whitespace-nowrap text-center">
+                        <button data-modal-hide="default-modal" type="button" class="text-white bg-green-700 hover:bg-green-800 focus:ring-4 focus:outline-none focus:ring-green-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center">Request</button>
                         </td>
                     </tr>
                 </tbody>
             </table>
         </div>
-
+        
+        <!-- Pending requests and My books -->
         <div class="h-150 grid grid-cols-2 gap-4 mb-4">
-            <!-- Pending Book Returns -->
+            <!-- Books available -->
             <div class="h-full rounded-sm h-28 bg-gray-50 shadow-md overflow-y-auto overflow-x-auto">
                 <p class="text-lg p-4 text-gray-500">
-                Pending Book Returns
+                Pending Requests
                 </p>
 
+                <!-- books table -->
                 <table class="w-full text-sm text-left rtl:text-right text-gray-500">
                     <thead class="text-xs text-gray-700 uppercase bg-gray-200">
                         <tr>
                             <th scope="col" class="px-6 py-3 whitespace-nowrap">
-                                Student ID
-                            </th>
-                            <th scope="col" class="px-6 py-3 whitespace-nowrap">
-                                Student Name
-                            </th>
-                            <th scope="col" class="px-6 py-3 whitespace-nowrap">
                                 Book Title
                             </th>
                             <th scope="col" class="px-6 py-3 whitespace-nowrap">
-                                Book Author
+                                Author
                             </th>
                             <th scope="col" class="px-6 py-3 whitespace-nowrap">
-                                Date
+                                Registration Date
                             </th>
                             <th scope="col" class="px-6 py-3 whitespace-nowrap text-center">
                                 Action
@@ -122,12 +105,6 @@
                     </thead>
                     <tbody>
                         <tr class="bg-white border-b border-gray-200 hover:bg-gray-50">
-                            <td class="px-6 py-4">
-                                12102042
-                            </td>
-                            <td class="px-6 py-4 whitespace-nowrap">
-                                Robert Palma
-                            </td>
                             <td class="px-6 py-4">
                                 Pride and Prejudice Jane Austen.
                             </td>
@@ -138,8 +115,50 @@
                                 4:05PM 05/04/2026
                             </td>
                             <td class="px-6 py-4 whitespace-nowrap text-center">
-                                <button type="button" class="focus:outline-none text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 me-2 mb-2">Accept</button>
-                                <button type="button" class="focus:outline-none text-white bg-red-700 hover:bg-red-800 focus:ring-4 focus:ring-red-300 font-medium rounded-lg text-sm px-5 py-2.5 me-2 mb-2">Decline</button>
+                                <button type="button" class="focus:outline-none text-white bg-red-700 hover:bg-red-800 focus:ring-4 focus:ring-red-300 font-medium rounded-lg text-sm px-5 py-2.5 me-2 mb-2">Cancel</button>
+                            </td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+
+            <!-- My Books -->
+            <div class="h-full rounded-sm h-28 bg-gray-50 shadow-md overflow-y-auto overflow-x-auto">
+                <p class="text-lg p-4 text-gray-500">
+                My Books
+                </p>
+
+                <!-- books table -->
+                <table class="w-full text-sm text-left rtl:text-right text-gray-500">
+                    <thead class="text-xs text-gray-700 uppercase bg-gray-200">
+                        <tr>
+                            <th scope="col" class="px-6 py-3 whitespace-nowrap">
+                                Book Title
+                            </th>
+                            <th scope="col" class="px-6 py-3 whitespace-nowrap">
+                                Author
+                            </th>
+                            <th scope="col" class="px-6 py-3 whitespace-nowrap">
+                                Borrowed Date
+                            </th>
+                            <th scope="col" class="px-6 py-3 whitespace-nowrap">
+                                Due date
+                            </th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr class="bg-white border-b border-gray-200 hover:bg-gray-50">
+                            <td class="px-6 py-4">
+                                Pride and Prejudice Jane Austen.
+                            </td>
+                            <td class="px-6 py-4 whitespace-nowrap">
+                                Jane Austen
+                            </td>
+                            <td class="px-6 py-4 whitespace-nowrap">
+                                4:05PM 05/04/2026
+                            </td>
+                            <td class="px-6 py-4 whitespace-nowrap">
+                                4:05PM 05/04/2026
                             </td>
                         </tr>
                     </tbody>

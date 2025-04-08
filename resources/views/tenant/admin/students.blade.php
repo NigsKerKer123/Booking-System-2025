@@ -5,10 +5,72 @@
 @include('tenant.admin.sidebar')
 
 @section('content')
+
+<!-- alert toast -->
+@if ($errors->any())
+<div class="fixed top-4 right-4 z-50">
+    @foreach ($errors->all() as $index => $error)
+        <div id="toast-danger-{{ $index }}" class="flex items-center w-full max-w-xs p-4 mb-4 text-gray-500 bg-white rounded-lg shadow-sm" role="alert">
+            <div class="inline-flex items-center justify-center shrink-0 w-8 h-8 text-red-500 bg-red-100 rounded-lg">
+                <svg class="w-5 h-5" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="currentColor" viewBox="0 0 20 20">
+                    <path d="M10 .5a9.5 9.5 0 1 0 9.5 9.5A9.51 9.51 0 0 0 10 .5Zm3.707 11.793a1 1 0 1 1-1.414 1.414L10 11.414l-2.293 2.293a1 1 0 0 1-1.414-1.414L8.586 10 6.293 7.707a1 1 0 0 1 1.414-1.414L10 8.586l2.293-2.293a1 1 0 0 1 1.414 1.414L11.414 10l2.293 2.293Z"/>
+                </svg>
+                <span class="sr-only">Error icon</span>
+            </div>
+            <div class="ms-3 text-sm font-normal">{{ $error }}</div>
+            <button type="button" class="ms-auto -mx-1.5 -my-1.5 bg-white text-gray-400 hover:text-gray-900 rounded-lg focus:ring-2 focus:ring-gray-300 p-1.5 hover:bg-gray-100 inline-flex items-center justify-center h-8 w-8" data-dismiss-target="#toast-danger" aria-label="Close">
+                <span class="sr-only">Close</span>
+                <svg class="w-3 h-3" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 14 14">
+                    <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="m1 1 6 6m0 0 6 6M7 7l6-6M7 7l-6 6"/>
+                </svg>
+            </button>
+        </div>
+         <!-- toast javascript -->
+        <script>
+            setTimeout(function() {
+                const toast = document.getElementById('toast-danger-{{ $index }}');
+                if (toast) {
+                    toast.style.display = 'none';
+                }
+            }, 5000);
+        </script>
+    @endforeach
+</div>
+@endif
+
+<!-- succuss toast -->
+@if (session('success'))
+<div class="fixed top-4 right-4 z-50">
+    <div id="toast-success" class="flex items-center w-full max-w-xs p-4 mb-4 text-gray-500 bg-white rounded-lg shadow-sm" role="alert">
+        <div class="inline-flex items-center justify-center shrink-0 w-8 h-8 text-green-500 bg-green-100 rounded-lg">
+            <svg class="w-5 h-5" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="currentColor" viewBox="0 0 20 20">
+                <path d="M10 .5a9.5 9.5 0 1 0 9.5 9.5A9.51 9.51 0 0 0 10 .5Zm3.707 8.207-4 4a1 1 0 0 1-1.414 0l-2-2a1 1 0 0 1 1.414-1.414L9 10.586l3.293-3.293a1 1 0 0 1 1.414 1.414Z"/>
+            </svg>
+            <span class="sr-only">Check icon</span>
+        </div>
+        <div class="ms-3 text-sm font-normal">{{ session('success')}}</div>
+        <button type="button" class="ms-auto -mx-1.5 -my-1.5 bg-white text-gray-400 hover:text-gray-900 rounded-lg focus:ring-2 focus:ring-gray-300 p-1.5 hover:bg-gray-100 inline-flex items-center justify-center h-8 w-8" data-dismiss-target="#toast-success" aria-label="Close">
+            <span class="sr-only">Close</span>
+            <svg class="w-3 h-3" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 14 14">
+                <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="m1 1 6 6m0 0 6 6M7 7l6-6M7 7l-6 6"/>
+            </svg>
+        </button>
+    </div>
+    <script>
+        setTimeout(function() {
+            const toast = document.getElementById('toast-success');
+            if (toast) {
+                toast.style.display = 'none';
+            }
+        }, 5000);
+    </script>
+</div>
+@endif
+
 <div class="p-4 sm:ml-64">
-   <div class="pl-4 pr-2 mt-22 flex justify-end">
+   <div class="pl-4 pr-2 mt-22 flex justify-between items-center">
       <!-- add button -->
-         <button type="button" data-modal-target="add-modal" data-modal-toggle="add-modal" class="focus:outline-none text-white bg-green-700 hover:bg-green-800 focus:ring-4 focus:ring-green-300 font-medium rounded-lg text-sm px-5 py-2.5 me-2 mb-2 dark:bg-green-600 dark:hover:bg-green-700 dark:focus:ring-green-800">Add Student</button>
+         <button type="button" data-modal-target="add-modal" data-modal-toggle="add-modal" class="focus:outline-none text-white bg-green-700 hover:bg-green-800 focus:ring-4 focus:ring-green-300 font-medium rounded-lg text-sm px-5 py-2.5 me-2 mb-2">Add Student</button>
    </div>
 
     <div class="p-4">
@@ -73,9 +135,9 @@
                         4:05PM 05/04/2026
                      </td>
                      <td class="px-6 py-4 text-center  whitespace-nowrap">
-                        <button type="button" data-modal-target="manage-modal" data-modal-toggle="manage-modal" class="text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 me-2 mb-2 dark:bg-blue-600 dark:hover:bg-blue-700 focus:outline-none dark:focus:ring-blue-800">Manage</button>
+                        <button type="button" data-modal-target="manage-modal" data-modal-toggle="manage-modal" class="text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 me-2 mb-2">Manage</button>
 
-                        <button type="button" data-modal-target="remove-modal" data-modal-toggle="remove-modal" class="focus:outline-none text-white bg-red-700 hover:bg-red-800 focus:ring-4 focus:ring-red-300 font-medium rounded-lg text-sm px-5 py-2.5 me-2 mb-2 dark:bg-red-600 dark:hover:bg-red-700 dark:focus:ring-red-900">Remove</button>
+                        <button type="button" data-modal-target="remove-modal" data-modal-toggle="remove-modal" class="focus:outline-none text-white bg-red-700 hover:bg-red-800 focus:ring-4 focus:ring-red-300 font-medium rounded-lg text-sm px-5 py-2.5 me-2 mb-2">Remove</button>
                      </td>
                   </tr>
             </tbody>
@@ -103,21 +165,27 @@
                 </button>
             </div>
             <!-- Modal body -->
-            <form class="p-4 md:p-5">
+            <form class="p-4 md:p-5" action="{{ route('admin.student.store') }}" method="POST">
+                @csrf
                 <div class="grid gap-4 mb-4 grid-cols-2">
                     <div class="col-span-2">
-                        <label for="name" class="block mb-2 text-sm font-medium text-gray-900">Name</label>
-                        <input type="name" name="name" id="name" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5" placeholder="Type student name" required="">
+                        <label for="student_id" class="block mb-2 text-sm font-medium text-gray-900">Student ID</label>
+                        <input type="text" name="student_id" id="student_id" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5" placeholder="Type student ID" required="">
                     </div>
 
                     <div class="col-span-2">
+                        <label for="name" class="block mb-2 text-sm font-medium text-gray-900">Name</label>
+                        <input type="text" name="name" id="name" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5" placeholder="Type student name" required="">
+                    </div>
+
+                    <div class="col-span-2 sm:col-span-1">
                         <label for="email" class="block mb-2 text-sm font-medium text-gray-900">Email</label>
                         <input type="email" name="email" id="email" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5" placeholder="Type email" required="">
                     </div>
 
                     <div class="col-span-2 sm:col-span-1">
-                        <label for="subscription" class="block mb-2 text-sm font-medium text-gray-900">Subscription</label>
-                        <select id="subscription" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-primary-500 focus:border-primary-500 block w-full p-2.5" required>
+                        <label for="school_year" class="block mb-2 text-sm font-medium text-gray-900">School Year</label>
+                        <select id="school_year" name="school_year" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-primary-500 focus:border-primary-500 block w-full p-2.5" required>
                             <option selected disabled>Select School Year</option>
                             <option value="1">1</option>
                             <option value="2">2</option>
@@ -128,23 +196,17 @@
 
                     <div class="col-span-2 sm:col-span-1">
                         <label for="college" class="block mb-2 text-sm font-medium text-gray-900">College</label>
-                        <select id="college" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-primary-500 focus:border-primary-500 block w-full p-2.5" required>
-                            <option selected disabled>Select College</option>
-                            <option value="COT">COT</option>
-                            <option value="CAS">CAS</option>
-                            <option value="CPAG">CPAG</option>
-                            <option value="COB">COB</option>
-                        </select>
+                        <input type="text" name="college" id="college" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5" placeholder="Type college" required="">
                     </div>
 
                     <div class="col-span-2 sm:col-span-1">
                         <label for="course" class="block mb-2 text-sm font-medium text-gray-900">Course</label>
-                        <input type="course" name="course" id="course" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5" placeholder="Type course" required="">
+                        <input type="text" name="course" id="course" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5" placeholder="Type course" required="">
                     </div>
                 </div>
                 <button type="submit" class="text-white inline-flex items-center bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center">
                     <svg class="me-1 -ms-1 w-5 h-5" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg"><path fill-rule="evenodd" d="M10 5a1 1 0 011 1v3h3a1 1 0 110 2h-3v3a1 1 0 11-2 0v-3H6a1 1 0 110-2h3V6a1 1 0 011-1z" clip-rule="evenodd"></path></svg>
-                    Add Tenant
+                    Add Student
                 </button>
             </form>
         </div>
@@ -169,21 +231,27 @@
                 </button>
             </div>
             <!-- Modal body -->
-            <form class="p-4 md:p-5">
+            <form class="p-4 md:p-5" action="{{ route('admin.student.store') }}" method="POST">
+                @csrf
                 <div class="grid gap-4 mb-4 grid-cols-2">
                     <div class="col-span-2">
-                        <label for="name" class="block mb-2 text-sm font-medium text-gray-900">Name</label>
-                        <input type="name" name="name" id="name" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5" placeholder="Type student name" required="">
+                        <label for="student_id" class="block mb-2 text-sm font-medium text-gray-900">Student ID</label>
+                        <input type="text" name="student_id" id="student_id" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5" placeholder="Type student ID" required="">
                     </div>
 
                     <div class="col-span-2">
+                        <label for="name" class="block mb-2 text-sm font-medium text-gray-900">Name</label>
+                        <input type="text" name="name" id="name" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5" placeholder="Type student name" required="">
+                    </div>
+
+                    <div class="col-span-2 sm:col-span-1">
                         <label for="email" class="block mb-2 text-sm font-medium text-gray-900">Email</label>
                         <input type="email" name="email" id="email" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5" placeholder="Type email" required="">
                     </div>
 
                     <div class="col-span-2 sm:col-span-1">
-                        <label for="subscription" class="block mb-2 text-sm font-medium text-gray-900">Subscription</label>
-                        <select id="subscription" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-primary-500 focus:border-primary-500 block w-full p-2.5" required>
+                        <label for="school_year" class="block mb-2 text-sm font-medium text-gray-900">School Year</label>
+                        <select id="school_year" name="school_year" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-primary-500 focus:border-primary-500 block w-full p-2.5" required>
                             <option selected disabled>Select School Year</option>
                             <option value="1">1</option>
                             <option value="2">2</option>
@@ -194,30 +262,17 @@
 
                     <div class="col-span-2 sm:col-span-1">
                         <label for="college" class="block mb-2 text-sm font-medium text-gray-900">College</label>
-                        <select id="college" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-primary-500 focus:border-primary-500 block w-full p-2.5" required>
-                            <option selected disabled>Select College</option>
-                            <option value="COT">COT</option>
-                            <option value="CAS">CAS</option>
-                            <option value="CPAG">CPAG</option>
-                            <option value="COB">COB</option>
-                        </select>
+                        <input type="text" name="college" id="college" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5" placeholder="Type college" required="">
                     </div>
 
                     <div class="col-span-2 sm:col-span-1">
                         <label for="course" class="block mb-2 text-sm font-medium text-gray-900">Course</label>
-                        <input type="course" name="course" id="course" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5" placeholder="Type course" required="">
+                        <input type="text" name="course" id="course" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5" placeholder="Type course" required="">
                     </div>
                 </div>
-                <div class="flex justify-between">
-                    <!-- manage submit -->
-                    <button type="submit" class="text-white inline-flex items-center bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center">
-                        Apply Changes
-                    </button>
-                    <button type="button" class="text-white inline-flex items-center bg-green-700 hover:bg-green-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center">
-                    <svg xmlns="http://www.w3.org/2000/svg" height="24px" viewBox="0 -960 960 960" width="24px" fill="#ffffff"><path d="M204-318q-22-38-33-78t-11-82q0-134 93-228t227-94h7l-64-64 56-56 160 160-160 160-56-56 64-64h-7q-100 0-170 70.5T240-478q0 26 6 51t18 49l-60 60ZM481-40 321-200l160-160 56 56-64 64h7q100 0 170-70.5T720-482q0-26-6-51t-18-49l60-60q22 38 33 78t11 82q0 134-93 228t-227 94h-7l64 64-56 56Z"/></svg>
-                        Reset Password
-                    </button>
-                </div>
+                <button type="submit" class="text-white inline-flex items-center bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center">
+                    Apply Changes
+                </button>
             </form>
         </div>
     </div>

@@ -250,7 +250,6 @@
                     </table>
                 </div>
             </div>
-            <!-- Modal footer -->
             <div class="flex justify-between items-center p-4 md:p-5 border-t border-gray-200 rounded-b">
                 <button data-modal-hide="default-modal" type="button" class="text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center">Confirm</button>
                 <button data-modal-hide="select-modal" type="button" class="py-2.5 px-5 ms-3 text-sm font-medium text-gray-900 focus:outline-none bg-gray-200 rounded-lg border border-gray-300 hover:bg-gray-400 hover:text-gray-700 focus:z-10 focus:ring-4 focus:ring-gray-200">Cancel</button>

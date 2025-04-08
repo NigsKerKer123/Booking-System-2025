@@ -10,6 +10,8 @@ use App\Http\Controllers\AdminBookController;
 use App\Http\Controllers\AdminBorrowBookController;
 use App\Http\Controllers\AdminReturnBookController;
 use App\Http\Controllers\AdminSettingsController;
+use App\Http\Controllers\UserBorrowBooksController;
+use App\Http\Controllers\UserReturnController;
 
 Route::get('/', function () {
     return view('welcome');
@@ -34,6 +36,7 @@ Route::prefix('admin')->group(function () {
 
     //student
     Route::get('/student', [AdminStudentController::class, 'index'])->name('admin.student.index');
+    Route::post('/student/store', [AdminStudentController::class, 'store'])->name('admin.student.store');
 
     //books
     Route::get('/book', [AdminBookController::class, 'index'])->name('admin.book.index');
@@ -46,5 +49,13 @@ Route::prefix('admin')->group(function () {
 
     //settings
     Route::get('/settings', [AdminSettingsController::class, 'index'])->name('admin.settings.index');
+});
+
+Route::prefix('user')->group(function (){
+    //borrow books
+    Route::get('/borrow', [UserBorrowBooksController::class, 'index'])->name('user.borrow.index');
+
+    //return books
+    Route::get('/return', [UserReturnController::class, 'index'])->name('user.return.index');
 });
 
