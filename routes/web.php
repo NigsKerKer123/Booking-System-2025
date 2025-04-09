@@ -43,6 +43,9 @@ Route::prefix('admin')->group(function () {
 
     //books
     Route::get('/book', [AdminBookController::class, 'index'])->name('admin.book.index');
+    Route::post('/book/store', [AdminBookController::class, 'store'])->name('admin.book.store');
+    Route::put('/book/update', [AdminBookController::class, 'update'])->name('admin.book.update');
+    Route::delete('/book/delete', [AdminBookController::class, 'destroy'])->name('admin.book.delete');
 
     //borrow books
     Route::get('/borrow', [AdminBorrowBookController::class, 'index'])->name('admin.borrow.index');
