@@ -49,6 +49,7 @@ Route::prefix('admin')->group(function () {
 
     //borrow books
     Route::get('/borrow', [AdminBorrowBookController::class, 'index'])->name('admin.borrow.index');
+    Route::post('/borrow/store', [AdminBorrowBookController::class, 'store'])->name('admin.borrow.store');
 
     //return books
     Route::get('/return', [AdminReturnBookController::class, 'index'])->name('admin.return.index');
