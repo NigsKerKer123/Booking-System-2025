@@ -53,11 +53,13 @@ Route::prefix('admin')->group(function () {
 
     //return books
     Route::get('/return', [AdminReturnBookController::class, 'index'])->name('admin.return.index');
+    Route::delete('/return/delete', [AdminReturnBookController::class, 'destroy'])->name('admin.return.delete');
 
     //settings
     Route::get('/settings', [AdminSettingsController::class, 'index'])->name('admin.settings.index');
 });
 
+// user or student routes
 Route::prefix('user')->group(function (){
     //borrow books
     Route::get('/borrow', [UserBorrowBooksController::class, 'index'])->name('user.borrow.index');

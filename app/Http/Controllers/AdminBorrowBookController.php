@@ -10,31 +10,38 @@ use Carbon\Carbon;
 
 class AdminBorrowBookController extends Controller
 {
-    public function index(){
-        $books = Books::all();
+    public function index()
+    {
+        $books = Books::where('quantity', '>', 0)->get();
         $students = Students::all();
 
-        $books->each(function ($books) {
-            $books->formatted_timestamp = Carbon::parse($books->created_at)->format('g:iA m/d/Y');
+        $books->each(function ($book) {
+            $borrowedCount = BorrowBooks::where('book_id', $book->id)->count();
+            $book->available_quantity = $book->quantity - $borrowedCount;
+            $book->formatted_timestamp = Carbon::parse($book->created_at)->format('g:iA m/d/Y');
         });
+
+        $books = $books->filter(function ($book) {
+            return $book->available_quantity > 0;
+        });
+
         return view('tenant.admin.borrowBooks', compact('books', 'students'));
     }
 
     public function store(Request $request)
     {
-        try {
-            // Validate input
-            $request->validate([
-                'student_id' => 'required|exists:students,id',
-                'selected_books' => 'required|array|min:1',
-                'selected_books.*' => 'exists:books,id',
-            ], [
-                'student_id.required' => 'Please select a student.',
-                'student_id.exists' => 'The selected student does not exist.',
-                'selected_books.required' => 'Please select at least one book.',
-                'selected_books.*.exists' => 'One or more selected books do not exist.',
-            ]);
+        $request->validate([
+            'student_id' => 'required|exists:students,id',
+            'selected_books' => 'required|array|min:1',
+            'selected_books.*' => 'exists:books,id',
+        ], [
+            'student_id.required' => 'Please select a student.',
+            'student_id.exists' => 'The selected student does not exist.',
+            'selected_books.required' => 'Please select at least one book.',
+            'selected_books.*.exists' => 'One or more selected books do not exist.',
+        ]);
 
+        try {
             $studentId = $request->student_id;
             $selectedBookIds = $request->selected_books;
 
@@ -48,7 +55,6 @@ class AdminBorrowBookController extends Controller
             return redirect()->back()->with('success', 'Books successfully borrowed by the student.');
         
         } catch (\Exception $e) {
-            return $e;
             return redirect()->back()->withErrors(['error' => 'An unexpected error occurred. Please try again later.']);
         }
     }

@@ -171,7 +171,7 @@
                                 {{$book->quantity}}
                             </td>
                             <td class="px-6 py-4">
-                                3
+                                {{$book->available_quantity}}
                             </td>
                             <td class="px-6 py-4 whitespace-nowrap">
                                 {{$book->formatted_timestamp}}
@@ -254,7 +254,7 @@
                                     {{$book->quantity}}
                                 </td>
                                 <td class="px-6 py-4">
-                                    3
+                                    {{$book->available_quantity}}
                                 </td>
                             </tr>
                             @endforeach

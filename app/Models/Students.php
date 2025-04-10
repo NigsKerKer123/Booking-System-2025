@@ -38,4 +38,9 @@ class Students extends Model
             'password' => 'hashed',
         ];
     }
+
+    public function borrowBooks()
+    {
+        return $this->hasMany(BorrowBooks::class, 'student_id');
+    }
 }

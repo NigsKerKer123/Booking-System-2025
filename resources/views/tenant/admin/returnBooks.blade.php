@@ -51,7 +51,7 @@
                             Book Author
                         </th>
                         <th scope="col" class="px-6 py-3 whitespace-nowrap">
-                            Date
+                            Date Borrowed
                         </th>
                         <th scope="col" class="px-6 py-3 text-center">
                             Action
@@ -59,33 +59,40 @@
                     </tr>
                 </thead>
                 <tbody>
+                <form action="{{route('admin.return.delete')}}" method="POST">
+                @csrf
+                @method('DELETE')
+
+                @foreach($borrowBooks as $borrowedBook)
+                    <input type="hidden" name="borrowedBook_id" value="{{$borrowedBook->id}}">
                     <tr class="bg-white border-b border-gray-200 hover:bg-gray-50">
                         <th scope="row" class="px-6 py-4 font-medium text-gray-900 whitespace-nowrap">
-                            2123214
+                            {{ $borrowedBook->student->id }} <!-- Student ID -->
                         </th>
                         <td class="px-6 py-4 whitespace-nowrap">
-                            Robert Palma
+                            {{ $borrowedBook->student->name }} <!-- Student Name -->
                         </td>
                         <td class="px-6 py-4 whitespace-nowrap">
-                            College of Technologies
+                            {{ $borrowedBook->student->college }} <!-- Student College -->
                         </td>
                         <td class="px-6 py-4 whitespace-nowrap">
-                            4
+                            {{ $borrowedBook->student->school_year }} <!-- Student School Year -->
                         </td>
                         <td class="px-6 py-4 whitespace-nowrap">
-                            Pride and Prejudice Jane Austen.
+                            {{ $borrowedBook->book->title }} <!-- Book Title -->
                         </td>
                         <td class="px-6 py-4 whitespace-nowrap">
-                            Jane Austen
+                            {{ $borrowedBook->book->author }} <!-- Book Author -->
                         </td>
-
                         <td class="px-6 py-4 whitespace-nowrap">
-                                4:05PM 05/04/2026
-                            </td>
-                        <td class="px-6 py-4 text-center  whitespace-nowrap">
-                            <button type="button" data-modal-target="manage-modal" data-modal-toggle="manage-modal" class="text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 me-2 mb-2 dark:bg-blue-600 dark:hover:bg-blue-700 focus:outline-none dark:focus:ring-blue-800">Return</button>
+                            {{ $borrowedBook->created_at->format('g:iA m/d/Y') }} <!-- Borrowed Date -->
+                        </td>
+                        <td class="px-6 py-4 text-center whitespace-nowrap">
+                            <button type="submit" class="text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 me-2 mb-2 dark:bg-blue-600 dark:hover:bg-blue-700 focus:outline-none dark:focus:ring-blue-800">Return</button>
                         </td>
                     </tr>
+                @endforeach
+                </form>
                 </tbody>
             </table>
         </div>
@@ -140,6 +147,54 @@
                             <td class="px-6 py-4 whitespace-nowrap text-center">
                                 <button type="button" class="focus:outline-none text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 me-2 mb-2">Accept</button>
                                 <button type="button" class="focus:outline-none text-white bg-red-700 hover:bg-red-800 focus:ring-4 focus:ring-red-300 font-medium rounded-lg text-sm px-5 py-2.5 me-2 mb-2">Decline</button>
+                            </td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+            
+            <!-- books return -->
+            <div class="h-full rounded-sm h-28 bg-gray-50 shadow-md overflow-y-auto overflow-x-auto">
+                <p class="text-lg p-4 text-gray-500">
+                Books Returned
+                </p>
+
+                <table class="w-full text-sm text-left rtl:text-right text-gray-500">
+                    <thead class="text-xs text-gray-700 uppercase bg-gray-200">
+                        <tr>
+                            <th scope="col" class="px-6 py-3 whitespace-nowrap">
+                                Student ID
+                            </th>
+                            <th scope="col" class="px-6 py-3 whitespace-nowrap">
+                                Student Name
+                            </th>
+                            <th scope="col" class="px-6 py-3 whitespace-nowrap">
+                                Book Title
+                            </th>
+                            <th scope="col" class="px-6 py-3 whitespace-nowrap">
+                                Book Author
+                            </th>
+                            <th scope="col" class="px-6 py-3 whitespace-nowrap">
+                                Date
+                            </th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr class="bg-white border-b border-gray-200 hover:bg-gray-50">
+                            <td class="px-6 py-4">
+                                12102042
+                            </td>
+                            <td class="px-6 py-4 whitespace-nowrap">
+                                Robert Palma
+                            </td>
+                            <td class="px-6 py-4">
+                                Pride and Prejudice Jane Austen.
+                            </td>
+                            <td class="px-6 py-4 whitespace-nowrap">
+                                Jane Austen
+                            </td>
+                            <td class="px-6 py-4 whitespace-nowrap">
+                                4:05PM 05/04/2026
                             </td>
                         </tr>
                     </tbody>

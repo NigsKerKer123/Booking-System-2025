@@ -12,4 +12,9 @@ class Books extends Model
         'author',
         'quantity'
     ];
+
+    public function borrowBooks()
+    {
+        return $this->hasMany(BorrowBooks::class, 'book_id');
+    }
 }
