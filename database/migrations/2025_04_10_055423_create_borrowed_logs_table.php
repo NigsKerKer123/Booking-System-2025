@@ -13,6 +13,8 @@ return new class extends Migration
     {
         Schema::create('borrowed_logs', function (Blueprint $table) {
             $table->id();
+            $table->string('student_id');
+            $table->string('book_id');
             $table->timestamps();
         });
     }
