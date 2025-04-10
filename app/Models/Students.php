@@ -43,4 +43,9 @@ class Students extends Model
     {
         return $this->hasMany(BorrowBooks::class, 'student_id');
     }
+
+    public function returnLogs()
+    {
+        return $this->hasMany(Return_logs::class, 'student_id');
+    }
 }

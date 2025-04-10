@@ -17,4 +17,9 @@ class Books extends Model
     {
         return $this->hasMany(BorrowBooks::class, 'book_id');
     }
+
+    public function returnLogs()
+    {
+        return $this->hasMany(Return_logs::class, 'book_id');
+    }
 }

@@ -67,25 +67,25 @@
                     <input type="hidden" name="borrowedBook_id" value="{{$borrowedBook->id}}">
                     <tr class="bg-white border-b border-gray-200 hover:bg-gray-50">
                         <th scope="row" class="px-6 py-4 font-medium text-gray-900 whitespace-nowrap">
-                            {{ $borrowedBook->student->id }} <!-- Student ID -->
+                            {{ $borrowedBook->student->id }}
                         </th>
                         <td class="px-6 py-4 whitespace-nowrap">
-                            {{ $borrowedBook->student->name }} <!-- Student Name -->
+                            {{ $borrowedBook->student->name }} 
                         </td>
                         <td class="px-6 py-4 whitespace-nowrap">
-                            {{ $borrowedBook->student->college }} <!-- Student College -->
+                            {{ $borrowedBook->student->college }} 
                         </td>
                         <td class="px-6 py-4 whitespace-nowrap">
-                            {{ $borrowedBook->student->school_year }} <!-- Student School Year -->
+                            {{ $borrowedBook->student->school_year }} 
                         </td>
                         <td class="px-6 py-4 whitespace-nowrap">
-                            {{ $borrowedBook->book->title }} <!-- Book Title -->
+                            {{ $borrowedBook->book->title }} 
                         </td>
                         <td class="px-6 py-4 whitespace-nowrap">
-                            {{ $borrowedBook->book->author }} <!-- Book Author -->
+                            {{ $borrowedBook->book->author }}
                         </td>
                         <td class="px-6 py-4 whitespace-nowrap">
-                            {{ $borrowedBook->created_at->format('g:iA m/d/Y') }} <!-- Borrowed Date -->
+                            {{ $borrowedBook->created_at->format('g:iA m/d/Y') }}
                         </td>
                         <td class="px-6 py-4 text-center whitespace-nowrap">
                             <button type="submit" class="text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 me-2 mb-2 dark:bg-blue-600 dark:hover:bg-blue-700 focus:outline-none dark:focus:ring-blue-800">Return</button>
@@ -156,7 +156,7 @@
             <!-- books return -->
             <div class="h-full rounded-sm h-28 bg-gray-50 shadow-md overflow-y-auto overflow-x-auto">
                 <p class="text-lg p-4 text-gray-500">
-                Books Returned
+                Books Returned Logs
                 </p>
 
                 <table class="w-full text-sm text-left rtl:text-right text-gray-500">
@@ -180,23 +180,25 @@
                         </tr>
                     </thead>
                     <tbody>
+                        @foreach($returnLogs as $returnLog)
                         <tr class="bg-white border-b border-gray-200 hover:bg-gray-50">
                             <td class="px-6 py-4">
-                                12102042
+                                {{$returnLog->student->student_id}}
                             </td>
                             <td class="px-6 py-4 whitespace-nowrap">
-                                Robert Palma
+                                {{$returnLog->student->name}}
                             </td>
                             <td class="px-6 py-4">
-                                Pride and Prejudice Jane Austen.
+                                {{$returnLog->book->title}}
                             </td>
                             <td class="px-6 py-4 whitespace-nowrap">
-                                Jane Austen
+                                {{ $returnLog->book->author }}
                             </td>
                             <td class="px-6 py-4 whitespace-nowrap">
-                                4:05PM 05/04/2026
+                                {{ $returnLog->created_at->format('g:iA m/d/Y') }} 
                             </td>
                         </tr>
+                        @endforeach
                     </tbody>
                 </table>
             </div>
