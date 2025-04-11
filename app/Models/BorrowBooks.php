@@ -11,6 +11,11 @@ class BorrowBooks extends Model
     protected $fillable = [
         'student_id',
         'book_id',
+        'due_date'
+    ];
+
+    protected $casts = [
+        'due_date' => 'datetime',
     ];
 
     public function student()

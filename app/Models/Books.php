@@ -22,4 +22,9 @@ class Books extends Model
     {
         return $this->hasMany(Return_logs::class, 'book_id');
     }
+
+    public function borrowLogs()
+    {
+        return $this->hasMany(Return_logs::class, 'book_id');
+    }
 }

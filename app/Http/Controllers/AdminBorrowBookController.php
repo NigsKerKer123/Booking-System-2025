@@ -6,6 +6,7 @@ use Illuminate\Http\Request;
 use App\Models\Books;
 use App\Models\Students;
 use App\Models\BorrowBooks;
+use App\Models\Borrow_logs;
 use Carbon\Carbon;
 
 class AdminBorrowBookController extends Controller
@@ -14,6 +15,7 @@ class AdminBorrowBookController extends Controller
     {
         $books = Books::where('quantity', '>', 0)->get();
         $students = Students::all();
+        $borrowLogs = Borrow_logs::with('student', 'book')->get();
 
         $books->each(function ($book) {
             $borrowedCount = BorrowBooks::where('book_id', $book->id)->count();
@@ -25,7 +27,7 @@ class AdminBorrowBookController extends Controller
             return $book->available_quantity > 0;
         });
 
-        return view('tenant.admin.borrowBooks', compact('books', 'students'));
+        return view('tenant.admin.borrowBooks', compact('books', 'students', 'borrowLogs'));
     }
 
     public function store(Request $request)
@@ -42,6 +44,7 @@ class AdminBorrowBookController extends Controller
         ]);
 
         try {
+            $dueDate = Carbon::now()->addWeek(); 
             $studentId = $request->student_id;
             $selectedBookIds = $request->selected_books;
 
@@ -49,12 +52,18 @@ class AdminBorrowBookController extends Controller
                 BorrowBooks::create([
                     'student_id' => $studentId,
                     'book_id' => $bookId,
+                    'due_date' => $dueDate
+                ]);
+
+                Borrow_logs::create([
+                    'student_id' => $studentId,
+                    'book_id' => $bookId,
                 ]);
             }
-
             return redirect()->back()->with('success', 'Books successfully borrowed by the student.');
         
         } catch (\Exception $e) {
+            return $e;
             return redirect()->back()->withErrors(['error' => 'An unexpected error occurred. Please try again later.']);
         }
     }

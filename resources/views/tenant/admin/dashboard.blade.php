@@ -12,15 +12,14 @@
          <button type="button" class="shadow-md focus:outline-none text-white bg-green-700 hover:bg-green-800 focus:ring-4 focus:ring-green-300 font-medium rounded-lg text-sm px-5 py-2.5 me-2 mb-2 dark:bg-green-600 dark:hover:bg-green-700 dark:focus:ring-green-800">Generate Reports</button>
       </div>
       
-
       <!-- 3 status-->
-      <div class="grid grid-cols-3 gap-4 mb-4">
+      <div class="grid grid-cols-4 gap-4 mb-4">
          <div class="flex flex-col items-center justify-center h-30 p-4 rounded-lg bg-gray-50 shadow-md">
             <p class="text-lg font-medium text-black">
                TOTAL STUDENTS
             </p>
             <p class="text-4xl font-medium text-black">
-               100
+               {{$studentCount}}
             </p>
          </div>
          <div class="flex flex-col items-center justify-center h-30 p-4 rounded-lg bg-gray-50 shadow-md">
@@ -28,7 +27,7 @@
                 BOOKS
             </p>
             <p class="text-4xl font-medium text-black">
-               100
+               {{$bookCount}}
             </p>
          </div>
          <div class="flex flex-col items-center justify-center h-30 p-4 rounded-lg bg-gray-50 shadow-md">
@@ -36,7 +35,15 @@
                 BOOKS BORROWED
             </p>
             <p class="text-4xl font-medium text-black">
-               100
+               {{$borrowCount}}
+            </p>
+         </div>
+         <div class="flex flex-col items-center justify-center h-30 p-4 rounded-lg bg-gray-50 shadow-md">
+            <p class="text-lg font-medium text-black">
+                BOOKS RETURNED
+            </p>
+            <p class="text-4xl font-medium text-black">
+               {{$returnCount}}
             </p>
          </div>
       </div>
@@ -69,142 +76,139 @@
                      <th scope="col" class="px-6 py-3 whitespace-nowrap">
                         Due Date
                      </th>
-                     <th scope="col" class="px-6 py-3 text-center">
-                        Action
-                     </th>
                   </tr>
             </thead>
             <tbody>
+                  @foreach($borrowBooks as $borrowBook)
                   <tr class="bg-white border-b border-gray-200 hover:bg-gray-50">
                      <th scope="row" class="px-6 py-4 font-medium text-gray-900 whitespace-nowrap">
-                        2100402024
+                        {{$borrowBook->student->student_id}}
                      </th>
                      <td class="px-6 py-4 whitespace-nowrap">
-                        Robert Palma
+                        {{$borrowBook->student->name}}
                      </td>
                      <td class="px-6 py-4">
-                        Pride and Prejudice Jane Austen.
+                        {{$borrowBook->book->title}}
                      </td>
                      <td class="px-6 py-4">
-                        Jane Austen
+                        {{$borrowBook->book->author}}
                      </td>
                      <td class="px-6 py-4 whitespace-nowrap">
-                        4:05PM 05/04/2025
+                        {{$borrowBook->created_at->format('g:iA m/d/Y')}} 
                      </td>
                      <td class="px-6 py-4 whitespace-nowrap">
-                        4:05PM 05/04/2025
-                     </td>
-                     <td class="px-6 py-4 text-center">
-                        <button type="button" data-modal-target="manage-modal" data-modal-toggle="manage-modal" class="text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 me-2 mb-2 dark:bg-blue-600 dark:hover:bg-blue-700 focus:outline-none dark:focus:ring-blue-800">More</button>
+                        {{$borrowBook->due_date->format('g:iA m/d/Y')}} 
                      </td>
                   </tr>
+                  @endforeach
             </tbody>
          </table>
       </div>
 
       <!-- Student and Books activity logs -->
       <div class="h-100 grid grid-cols-2 gap-4 mb-4">
+         <!-- books return logs-->
          <div class="h-full rounded-sm h-28 bg-gray-50 shadow-md overflow-y-auto overflow-x-auto">
-            <p class="text-lg p-4 text-gray-500">
-               Student Activity Logs
-            </p>
+               <p class="text-lg p-4 text-gray-500">
+               Books Returned Logs
+               </p>
 
-            <!-- student table -->
-            <table class="w-full text-sm text-left rtl:text-right text-gray-500">
-               <thead class="text-xs text-gray-700 uppercase bg-gray-200">
+               <table class="w-full text-sm text-left rtl:text-right text-gray-500">
+                  <thead class="text-xs text-gray-700 uppercase bg-gray-200">
                      <tr>
-                        <th scope="col" class="px-6 py-3 whitespace-nowrap">
-                           Account ID
-                        </th>
-                        <th scope="col" class="px-6 py-3 whitespace-nowrap">
-                           Student ID
-                        </th>
-                        <th scope="col" class="px-6 py-3 whitespace-nowrap text-center">
-                           Event
-                        </th>
-                        <th scope="col" class="px-6 py-3 whitespace-nowrap text-center">
-                           Date
-                        </th>
-                        <th scope="col" class="px-6 py-3 whitespace-nowrap text-center">
-                           Action
-                        </th>
+                           <th scope="col" class="px-6 py-3 whitespace-nowrap">
+                              Student ID
+                           </th>
+                           <th scope="col" class="px-6 py-3 whitespace-nowrap">
+                              Student Name
+                           </th>
+                           <th scope="col" class="px-6 py-3 whitespace-nowrap">
+                              Book Title
+                           </th>
+                           <th scope="col" class="px-6 py-3 whitespace-nowrap">
+                              Book Author
+                           </th>
+                           <th scope="col" class="px-6 py-3 whitespace-nowrap">
+                              Date
+                           </th>
                      </tr>
-               </thead>
-               <tbody>
+                  </thead>
+                  <tbody>
+                     @foreach($returnLogs as $returnLog)
                      <tr class="bg-white border-b border-gray-200 hover:bg-gray-50">
-                        <th scope="row" class="px-6 py-4 font-medium text-gray-900 whitespace-nowrap">
-                           1
-                        </th>
-                        <td class="px-6 py-4 whitespace-nowrap">
-                           20120204020
-                        </td>
-                        <td class="px-6 py-4 whitespace-nowrap">
-                           update_student
-                        </td>
-                        <td class="px-6 py-4 whitespace-nowrap">
-                           4:05PM 05/04/2025
-                        </td>
-                        <td class="px-6 py-4">
-                           <div class="flex gap-4 justify-center items-center">
-                              <button type="button" data-modal-target="remove-log-modal" data-modal-toggle="remove-log-modal" class="focus:outline-none text-white bg-red-700 hover:bg-red-800 focus:ring-4 focus:ring-red-300 font-medium rounded-lg text-sm px-5 py-2.5 me-2 mb-2 dark:bg-red-600 dark:hover:bg-red-700 dark:focus:ring-red-900">Remove</button>
-                           </div>
-                        </td>
+                           <td class="px-6 py-4">
+                              {{$returnLog->student->student_id}}
+                           </td>
+                           <td class="px-6 py-4 whitespace-nowrap">
+                              {{$returnLog->student->name}}
+                           </td>
+                           <td class="px-6 py-4">
+                              {{$returnLog->book->title}}
+                           </td>
+                           <td class="px-6 py-4 whitespace-nowrap">
+                              {{ $returnLog->book->author }}
+                           </td>
+                           <td class="px-6 py-4 whitespace-nowrap">
+                              {{ $returnLog->created_at->format('g:iA m/d/Y') }} 
+                           </td>
                      </tr>
-               </tbody>
-            </table>
+                     @endforeach
+                  </tbody>
+               </table>
          </div>
 
-         <!-- Pending tenant notification -->
+         <!-- Books borrowed logs -->
          <div class="h-full rounded-sm h-28 bg-gray-50 shadow-md overflow-y-auto overflow-x-auto">
-            <p class="text-lg p-4 text-gray-500">
-               Book Activity Logs
-            </p>
+               <p class="text-lg p-4 text-gray-500">
+               Book Borrowed Logs
+               </p>
 
-            <!-- books table -->
-            <table class="w-full text-sm text-left rtl:text-right text-gray-500">
-               <thead class="text-xs text-gray-700 uppercase bg-gray-200">
-                     <tr>
-                        <th scope="col" class="px-6 py-3 whitespace-nowrap">
-                           Account ID
-                        </th>
-                        <th scope="col" class="px-6 py-3 whitespace-nowrap">
-                           Book ID
-                        </th>
-                        <th scope="col" class="px-6 py-3 whitespace-nowrap text-center">
-                           Event
-                        </th>
-                        <th scope="col" class="px-6 py-3 whitespace-nowrap text-center">
-                           Date
-                        </th>
-                        <th scope="col" class="px-6 py-3 whitespace-nowrap text-center">
-                           Action
-                        </th>
-                     </tr>
-               </thead>
-               <tbody>
-                     <tr class="bg-white border-b border-gray-200 hover:bg-gray-50">
-                        <th scope="row" class="px-6 py-4 font-medium text-gray-900 whitespace-nowrap">
-                           1
-                        </th>
-                        <td class="px-6 py-4 whitespace-nowrap">
-                           1
-                        </td>
-                        <td class="px-6 py-4">
-                           update_book
-                        </td>
-                        <td class="px-6 py-4 whitespace-nowrap">
-                           4:05PM 05/04/2025
-                        </td>
-                        <td class="px-6 py-4">
-                           <div class="flex gap-4 justify-center items-center">
-                              <button type="button" data-modal-target="remove-log-modal" data-modal-toggle="remove-log-modal" class="focus:outline-none text-white bg-red-700 hover:bg-red-800 focus:ring-4 focus:ring-red-300 font-medium rounded-lg text-sm px-5 py-2.5 me-2 mb-2 dark:bg-red-600 dark:hover:bg-red-700 dark:focus:ring-red-900">Remove</button>
-                           </div>
-                        </td>
-                     </tr>
-               </tbody>
-            </table>
+               <!-- books table -->
+               <table class="w-full text-sm text-left rtl:text-right text-gray-500">
+                  <thead class="text-xs text-gray-700 uppercase bg-gray-200">
+                        <tr>
+                           <th scope="col" class="px-6 py-3 whitespace-nowrap">
+                              Student ID
+                           </th>
+                           <th scope="col" class="px-6 py-3 whitespace-nowrap">
+                              Student Name
+                           </th>
+                           <th scope="col" class="px-6 py-3 whitespace-nowrap">
+                              Book Title
+                           </th>
+                           <th scope="col" class="px-6 py-3 whitespace-nowrap">
+                              Book Author
+                           </th>
+                           <th scope="col" class="px-6 py-3 whitespace-nowrap">
+                              Date Borrowed
+                           </th>
+                        </tr>
+                  </thead>
+                  <tbody>
+                        @foreach($borrowLogs as $borrowLog)
+                        <tr class="bg-white border-b border-gray-200 hover:bg-gray-50">
+                           <td class="px-6 py-4">
+                              {{$borrowLog->student->id}}
+                           </td>
+                           <td class="px-6 py-4 whitespace-nowrap">
+                              {{$borrowLog->student->name}}
+                           </td>
+                           <td class="px-6 py-4">
+                              {{$borrowLog->book->title}}
+                           </td>
+                           <td class="px-6 py-4">
+                              {{$borrowLog->book->author}}
+                           </td>
+                           <td class="px-6 py-4 whitespace-nowrap">
+                              {{ $borrowLog->created_at->format('g:iA m/d/Y') }}
+                           </td>
+                        </tr>
+                        @endforeach
+                  </tbody>
+               </table>
+            </div>
          </div>
-      </div>
    </div>
 </div>
 @endsection
+

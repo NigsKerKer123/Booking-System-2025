@@ -85,7 +85,7 @@
             </table>
         </div>
         
-        <div class="h-150 grid grid-cols-2 gap-4 mb-4">
+        <div class="h-170 grid grid-cols-2 gap-4 mb-4">
             <!-- student request -->
             <div class="h-full rounded-sm h-28 bg-gray-50 shadow-md overflow-y-auto overflow-x-auto">
                 <p class="text-lg p-4 text-gray-500">
@@ -175,6 +175,57 @@
                             </td>
                             <td class="px-6 py-4 whitespace-nowrap">
                                 {{$book->formatted_timestamp}}
+                            </td>
+                        </tr>
+                        @endforeach
+                    </tbody>
+                </table>
+            </div>
+
+            <!-- Books borrowed logs -->
+            <div class="h-full rounded-sm h-28 bg-gray-50 shadow-md overflow-y-auto overflow-x-auto">
+                <p class="text-lg p-4 text-gray-500">
+                Book Borrowed Logs
+                </p>
+
+                <!-- books table -->
+                <table class="w-full text-sm text-left rtl:text-right text-gray-500">
+                    <thead class="text-xs text-gray-700 uppercase bg-gray-200">
+                        <tr>
+                            <th scope="col" class="px-6 py-3 whitespace-nowrap">
+                                Student ID
+                            </th>
+                            <th scope="col" class="px-6 py-3 whitespace-nowrap">
+                                Student Name
+                            </th>
+                            <th scope="col" class="px-6 py-3 whitespace-nowrap">
+                                Book Title
+                            </th>
+                            <th scope="col" class="px-6 py-3 whitespace-nowrap">
+                                Book Author
+                            </th>
+                            <th scope="col" class="px-6 py-3 whitespace-nowrap">
+                                Date Borrowed
+                            </th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        @foreach($borrowLogs as $borrowLog)
+                        <tr class="bg-white border-b border-gray-200 hover:bg-gray-50">
+                            <td class="px-6 py-4">
+                                {{$borrowLog->student->id}}
+                            </td>
+                            <td class="px-6 py-4 whitespace-nowrap">
+                                {{$borrowLog->student->name}}
+                            </td>
+                            <td class="px-6 py-4">
+                                {{$borrowLog->book->title}}
+                            </td>
+                            <td class="px-6 py-4">
+                                {{$borrowLog->book->author}}
+                            </td>
+                            <td class="px-6 py-4 whitespace-nowrap">
+                                {{ $borrowLog->created_at->format('g:iA m/d/Y') }}
                             </td>
                         </tr>
                         @endforeach
