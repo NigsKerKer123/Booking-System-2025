@@ -13,16 +13,20 @@ return new class extends Migration
     {
         Schema::create('students', function (Blueprint $table) {
             $table->id();
-            $table->string('student_id');
+            $table->string('google_id')->nullable()->unique();
+            $table->string('student_id')->nullable();
             $table->string('name');
-            $table->string('email');
+            $table->string('email')->unique();
             $table->enum('role', ['student', 'admin'])->default('student');
-            $table->string('course');
-            $table->string('college');
-            $table->string('school_year');
+            $table->string('course')->nullable();
+            $table->string('college')->nullable();
+            $table->string('school_year')->nullable();
+            $table->text('google_token')->nullable();
+            $table->text('google_refresh_token')->nullable();
             $table->timestamps();
         });
     }
+
 
     /**
      * Reverse the migrations.

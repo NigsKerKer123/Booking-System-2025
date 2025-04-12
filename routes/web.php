@@ -12,7 +12,7 @@ use App\Http\Controllers\AdminReturnBookController;
 use App\Http\Controllers\AdminSettingsController;
 use App\Http\Controllers\UserBorrowBooksController;
 use App\Http\Controllers\UserReturnController;
-use Laravel\Socialite\Facades\Socialite;
+use App\Http\Controllers\GoogleController;
 
 Route::get('/', function () {
     return view('welcome');
@@ -75,12 +75,8 @@ Route::prefix('user')->group(function (){
 });
 
 // google auth
-Route::get('/auth/redirect', function () {
-    return Socialite::driver('google')->redirect();
-});
- 
-Route::get('/auth/callback', function () {
-    $user = Socialite::driver('google')->user();
- 
-    $user->token;
-});
+Route::get('auth/google', [GoogleController::class, 'redirectToGoogle'])
+    ->name('tenant.auth.google.redirect');
+
+Route::get('auth/google/callback', [GoogleController::class, 'handleGoogleCallback'])
+    ->name('tenant.auth.google.callback');
