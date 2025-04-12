@@ -12,9 +12,15 @@ use App\Http\Controllers\AdminReturnBookController;
 use App\Http\Controllers\AdminSettingsController;
 use App\Http\Controllers\UserBorrowBooksController;
 use App\Http\Controllers\UserReturnController;
+use Laravel\Socialite\Facades\Socialite;
 
 Route::get('/', function () {
     return view('welcome');
+});
+
+// tenant welcome page
+Route::get('/welcome', function () {
+    return view('tenant.welcome');
 });
 
 // landlord routes
@@ -68,3 +74,13 @@ Route::prefix('user')->group(function (){
     Route::get('/return', [UserReturnController::class, 'index'])->name('user.return.index');
 });
 
+// google auth
+Route::get('/auth/redirect', function () {
+    return Socialite::driver('google')->redirect();
+});
+ 
+Route::get('/auth/callback', function () {
+    $user = Socialite::driver('google')->user();
+ 
+    $user->token;
+});

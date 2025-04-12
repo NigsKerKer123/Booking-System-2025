@@ -40,15 +40,12 @@
     </nav>
     <section class="bg-center bg-no-repeat bg-gray-700 bg-blend-multiply" style="background-image: url({{ asset('images/library_background.jpg') }});">
         <div class="px-4 mx-auto max-w-screen-xl text-center py-24 lg:py-56">
-            <h1 class="mb-4 text-4xl font-extrabold tracking-tight leading-none text-white md:text-5xl lg:text-6xl">
-                Welcome to Our Online Book Borrowing Library
-            </h1>
-            <h2 class="mb-4 text-2xl font-semibold text-gray-200 md:text-3xl">
-                A Multi-Tenant System Designed for Schools or Universities.
-            </h2>
-            <p class="mb-8 text-lg font-normal text-gray-300 lg:text-xl sm:px-16 lg:px-48">
-                Explore, borrow, and read your favorite books—all from the comfort of your home. Our Online Library makes it easy to borrow a wide range of books, from timeless classics to the latest bestsellers. With just a few clicks, you can have access to a world of stories and knowledge at your fingertips, whenever you need it.
-            </p>
+        <h1 class="mb-4 text-4xl font-extrabold tracking-tight leading-none text-white md:text-5xl lg:text-6xl">
+            Welcome to Our Online Book Borrowing Library
+        </h1>
+        <p class="mb-8 text-lg font-normal text-gray-300 lg:text-xl sm:px-16 lg:px-48">
+            Explore, borrow, and read your favorite books—all from the comfort of your home. Our Online Library makes it easy to borrow a wide range of books, from timeless classics to the latest bestsellers. With just a few clicks, you can have access to a world of stories and knowledge at your fingertips, whenever you need it.
+        </p>
             <div class="flex flex-col space-y-4 sm:flex-row sm:justify-center sm:space-y-0">
                 <a href="#" class="inline-flex justify-center items-center py-3 px-5 text-base font-medium text-center text-white rounded-lg bg-[#6D2932] hover:bg-[#561C24] focus:ring-4 focus:ring-blue-300 dark:focus:ring-blue-900">
                     Get started
@@ -62,7 +59,6 @@
             </div>
         </div>
     </section>
-
     <footer class="bg-[#561C24] shadow-sm">
         <div class="w-full max-w-screen-xl mx-auto p-4 md:py-8">
             <div class="sm:flex sm:items-center sm:justify-between">
