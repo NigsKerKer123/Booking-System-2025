@@ -85,7 +85,7 @@
             </table>
         </div>
         
-        <div class="h-170 grid grid-cols-2 gap-4 mb-4">
+        <div class="h-100 grid grid-cols-2 gap-4 mb-4">
             <!-- student request -->
             <div class="h-full rounded-sm h-28 bg-gray-50 shadow-md overflow-y-auto overflow-x-auto">
                 <p class="text-lg p-4 text-gray-500">
@@ -95,26 +95,38 @@
                 <!-- student Request table -->
                 <table class="w-full text-sm text-left rtl:text-right text-gray-500">
                 <thead class="text-xs text-gray-700 uppercase bg-gray-200">
-                        <tr>
-                            <th scope="col" class="px-6 py-3 whitespace-nowrap">
+                    <tr>
+                        <th scope="col" class="px-6 py-3 whitespace-nowrap">
                             Student ID
-                            </th>
-                            <th scope="col" class="px-6 py-3 whitespace-nowrap">
+                        </th>
+                        <th scope="col" class="px-6 py-3 whitespace-nowrap">
                             Student Name
-                            </th>
-                            <th scope="col" class="px-6 py-3 whitespace-nowrap text-center">
+                        </th>
+                        <th scope="col" class="px-6 py-3 whitespace-nowrap">
+                            Book Title
+                        </th>
+                        <th scope="col" class="px-6 py-3">
+                            Book Author
+                        </th>
+                        <th scope="col" class="px-6 py-3 whitespace-nowrap">
                             Date
-                            </th>
-                            <th scope="col" class="px-6 py-3 whitespace-nowrap text-center">
+                        </th>
+                        <th scope="col" class="px-6 py-3 whitespace-nowrap">
                             Action
-                            </th>
-                        </tr>
+                        </th>
+                    </tr>
                 </thead>
                 <tbody>
                         <tr class="bg-white border-b border-gray-200 hover:bg-gray-50">
                             <th scope="row" class="px-6 py-4 font-medium text-gray-900 whitespace-nowrap">
                             1
                             </th>
+                            <td class="px-6 py-4 whitespace-nowrap">
+                            Robert Palma
+                            </td>
+                            <td class="px-6 py-4 whitespace-nowrap">
+                            Robert Palma
+                            </td>
                             <td class="px-6 py-4 whitespace-nowrap">
                             Robert Palma
                             </td>
@@ -181,7 +193,9 @@
                     </tbody>
                 </table>
             </div>
+        </div>
 
+        <div class="h-100 grid grid-cols-2 gap-4 mb-4">
             <!-- Books borrowed logs -->
             <div class="h-full rounded-sm h-28 bg-gray-50 shadow-md overflow-y-auto overflow-x-auto">
                 <p class="text-lg p-4 text-gray-500">
