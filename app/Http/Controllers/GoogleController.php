@@ -17,23 +17,28 @@ class GoogleController extends Controller
     {
         try {
             $googleUser = Socialite::driver('google')->user();
+            $student = Students::where('email', $googleUser->email)->first();
 
-            $student = Students::updateOrCreate([
-                'google_id' => $googleUser->id,
-            ], [
-                'name' => $googleUser->name,
-                'email' => $googleUser->email,
-                'google_token' => $googleUser->token,
-                'google_refresh_token' => $googleUser->refreshToken,
-            ]);
+            if (!$student) {
+                return redirect('/welcome')->withErrors('Student does not exist.');
+            }
         
             Auth::guard('students')->login($student);
             
             return redirect()->route('user.borrow.index')->with('success', 'login successfully!');
         } catch (\Exception $e) {
-            return $e;
             return redirect('/welcome')->withErrors('Login failed');
         }
+    }
+
+    public function logout()
+    {
+        Auth::guard('students')->logout();
+
+        request()->session()->invalidate();
+        request()->session()->regenerateToken();
+
+        return redirect('/welcome')->with('success', 'Logged out successfully.');
     }
 }
 

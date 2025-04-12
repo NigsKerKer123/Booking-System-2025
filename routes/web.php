@@ -13,6 +13,7 @@ use App\Http\Controllers\AdminSettingsController;
 use App\Http\Controllers\UserBorrowBooksController;
 use App\Http\Controllers\UserReturnController;
 use App\Http\Controllers\GoogleController;
+use GuzzleHttp\Middleware;
 
 Route::get('/', function () {
     return view('welcome');
@@ -66,11 +67,11 @@ Route::prefix('admin')->group(function () {
 });
 
 // user or student routes
-Route::prefix('user')->group(function (){
-    //borrow books
+Route::middleware('student')->prefix('user')->group(function () {
+    // Borrow books
     Route::get('/borrow', [UserBorrowBooksController::class, 'index'])->name('user.borrow.index');
 
-    //return books
+    // Return books
     Route::get('/return', [UserReturnController::class, 'index'])->name('user.return.index');
 });
 
@@ -80,3 +81,5 @@ Route::get('auth/google', [GoogleController::class, 'redirectToGoogle'])
 
 Route::get('auth/google/callback', [GoogleController::class, 'handleGoogleCallback'])
     ->name('tenant.auth.google.callback');
+
+Route::get('/logout', [GoogleController::class, 'logout'])->name('student.logout');
