@@ -26,7 +26,7 @@
         <div class="max-w-screen-xl flex flex-wrap items-center justify-between mx-auto p-4">
             <a href="" class="flex items-center space-x-3 rtl:space-x-reverse">
                 <img src="{{asset('images/ReadSphere_Logo.png')}}" class="h-15" alt="Flowbite Logo" />
-                <span class="self-center text-2xl font-semibold whitespace-nowrap text-white">ReadSphere</span>
+                <span class="self-center text-2xl font-semibold whitespace-nowrap text-white">ReadSphere (TENANT)</span>
             </a>
             <div class="flex md:order-2 space-x-3 md:space-x-0 rtl:space-x-reverse">
                 <button data-collapse-toggle="navbar-cta" type="button" class="inline-flex items-center p-2 w-10 h-10 justify-center text-sm text-gray-500 rounded-lg md:hidden hover:bg-gray-100 focus:outline-none focus:ring-2 focus:ring-gray-200" aria-controls="navbar-cta" aria-expanded="false">

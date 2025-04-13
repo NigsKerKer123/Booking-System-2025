@@ -86,63 +86,6 @@
         </div>
         
         <div class="h-100 grid grid-cols-2 gap-4 mb-4">
-            <!-- student request -->
-            <div class="h-full rounded-sm h-28 bg-gray-50 shadow-md overflow-y-auto overflow-x-auto">
-                <p class="text-lg p-4 text-gray-500">
-                Student Book Request
-                </p>
-
-                <!-- student Request table -->
-                <table class="w-full text-sm text-left rtl:text-right text-gray-500">
-                <thead class="text-xs text-gray-700 uppercase bg-gray-200">
-                    <tr>
-                        <th scope="col" class="px-6 py-3 whitespace-nowrap">
-                            Student ID
-                        </th>
-                        <th scope="col" class="px-6 py-3 whitespace-nowrap">
-                            Student Name
-                        </th>
-                        <th scope="col" class="px-6 py-3 whitespace-nowrap">
-                            Book Title
-                        </th>
-                        <th scope="col" class="px-6 py-3">
-                            Book Author
-                        </th>
-                        <th scope="col" class="px-6 py-3 whitespace-nowrap">
-                            Date
-                        </th>
-                        <th scope="col" class="px-6 py-3 whitespace-nowrap">
-                            Action
-                        </th>
-                    </tr>
-                </thead>
-                <tbody>
-                        <tr class="bg-white border-b border-gray-200 hover:bg-gray-50">
-                            <th scope="row" class="px-6 py-4 font-medium text-gray-900 whitespace-nowrap">
-                            1
-                            </th>
-                            <td class="px-6 py-4 whitespace-nowrap">
-                            Robert Palma
-                            </td>
-                            <td class="px-6 py-4 whitespace-nowrap">
-                            Robert Palma
-                            </td>
-                            <td class="px-6 py-4 whitespace-nowrap">
-                            Robert Palma
-                            </td>
-                            <td class="px-6 py-4 whitespace-nowrap">
-                            4:05PM 05/04/2025
-                            </td>
-                            <td class="px-6 py-4">
-                            <div class="flex gap-4 justify-center items-center">
-                                <button type="button" class="text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 me-2 mb-2focus:outline-none">Check</button>
-                            </div>
-                            </td>
-                        </tr>
-                </tbody>
-                </table>
-            </div>
-
             <!-- Books available -->
             <div class="h-full rounded-sm h-28 bg-gray-50 shadow-md overflow-y-auto overflow-x-auto">
                 <p class="text-lg p-4 text-gray-500">
@@ -193,9 +136,7 @@
                     </tbody>
                 </table>
             </div>
-        </div>
 
-        <div class="h-100 grid grid-cols-2 gap-4 mb-4">
             <!-- Books borrowed logs -->
             <div class="h-full rounded-sm h-28 bg-gray-50 shadow-md overflow-y-auto overflow-x-auto">
                 <p class="text-lg p-4 text-gray-500">

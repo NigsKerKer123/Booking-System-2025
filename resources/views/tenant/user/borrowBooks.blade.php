@@ -44,84 +44,42 @@
                         <th scope="col" class="px-6 py-3 whitespace-nowrap">
                             Left
                         </th>
-                        <th scope="col" class="px-6 py-3 whitespace-nowrap">
-                            Registration Date
-                        </th>
                         <th scope="col" class="px-6 py-3 whitespace-nowrap text-center">
                             Action
                         </th>
                     </tr>
                 </thead>
                 <tbody>
-                    <tr class="bg-white border-b border-gray-200 hover:bg-gray-50">
-                        <td class="px-6 py-4">
-                            Pride and Prejudice Jane Austen.
-                        </td>
-                        <td class="px-6 py-4 whitespace-nowrap">
-                            Jane Austen
-                        </td>
-                        <td class="px-6 py-4">
-                            3
-                        </td>
-                        <td class="px-6 py-4">
-                            3
-                        </td>
-                        <td class="px-6 py-4 whitespace-nowrap">
-                            4:05PM 05/04/2026
-                        </td>
-                        <td class="px-6 py-4 whitespace-nowrap text-center">
-                        <button data-modal-hide="default-modal" type="button" class="text-white bg-green-700 hover:bg-green-800 focus:ring-4 focus:outline-none focus:ring-green-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center">Borrow</button>
-                        </td>
-                    </tr>
+                    @foreach($books as $book)
+                    <form action="{{route('user.borrow.store')}}" method="POST">
+                        @csrf
+                        <input type="hidden" name="book_id" value="{{$book->id}}">
+                        <input type="hidden" name="student_id" value="{{$studentId}}">
+                        <tr class="bg-white border-b border-gray-200 hover:bg-gray-50">
+                            <td class="px-6 py-4">
+                                {{$book->title}}
+                            </td>
+                            <td class="px-6 py-4 whitespace-nowrap">
+                                {{$book->author}}
+                            </td>
+                            <td class="px-6 py-4">
+                                {{$book->quantity}}
+                            </td>
+                            <td class="px-6 py-4">
+                                {{$book->available_quantity}}
+                            </td>
+                            <td class="px-6 py-4 whitespace-nowrap text-center">
+                            <button type="submit" class="text-white bg-green-700 hover:bg-green-800 focus:ring-4 focus:outline-none focus:ring-green-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center">Borrow</button>
+                            </td>
+                        </tr>
+                    </form>
+                    @endforeach
                 </tbody>
             </table>
         </div>
         
-        <!-- Pending requests and My books -->
+        <!-- My books -->
         <div class="h-150 grid grid-cols-2 gap-4 mb-4">
-            <!-- Books available -->
-            <div class="h-full rounded-sm h-28 bg-gray-50 shadow-md overflow-y-auto overflow-x-auto">
-                <p class="text-lg p-4 text-gray-500">
-                Pending Requests
-                </p>
-
-                <!-- books table -->
-                <table class="w-full text-sm text-left rtl:text-right text-gray-500">
-                    <thead class="text-xs text-gray-700 uppercase bg-gray-200">
-                        <tr>
-                            <th scope="col" class="px-6 py-3 whitespace-nowrap">
-                                Book Title
-                            </th>
-                            <th scope="col" class="px-6 py-3 whitespace-nowrap">
-                                Author
-                            </th>
-                            <th scope="col" class="px-6 py-3 whitespace-nowrap">
-                                Registration Date
-                            </th>
-                            <th scope="col" class="px-6 py-3 whitespace-nowrap text-center">
-                                Action
-                            </th>
-                        </tr>
-                    </thead>
-                    <tbody>
-                        <tr class="bg-white border-b border-gray-200 hover:bg-gray-50">
-                            <td class="px-6 py-4">
-                                Pride and Prejudice Jane Austen.
-                            </td>
-                            <td class="px-6 py-4 whitespace-nowrap">
-                                Jane Austen
-                            </td>
-                            <td class="px-6 py-4 whitespace-nowrap">
-                                4:05PM 05/04/2026
-                            </td>
-                            <td class="px-6 py-4 whitespace-nowrap text-center">
-                                <button type="button" class="focus:outline-none text-white bg-red-700 hover:bg-red-800 focus:ring-4 focus:ring-red-300 font-medium rounded-lg text-sm px-5 py-2.5 me-2 mb-2">Cancel</button>
-                            </td>
-                        </tr>
-                    </tbody>
-                </table>
-            </div>
-
             <!-- My Books -->
             <div class="h-full rounded-sm h-28 bg-gray-50 shadow-md overflow-y-auto overflow-x-auto">
                 <p class="text-lg p-4 text-gray-500">
@@ -144,23 +102,31 @@
                             <th scope="col" class="px-6 py-3 whitespace-nowrap">
                                 Due date
                             </th>
+                            <th scope="col" class="px-6 py-3 whitespace-nowrap">
+                                Action
+                            </th>
                         </tr>
                     </thead>
                     <tbody>
+                        @foreach($borrowedBooks as $borrowedBook)
                         <tr class="bg-white border-b border-gray-200 hover:bg-gray-50">
                             <td class="px-6 py-4">
-                                Pride and Prejudice Jane Austen.
+                                {{$borrowedBook->book->title}}
                             </td>
                             <td class="px-6 py-4 whitespace-nowrap">
-                                Jane Austen
+                                {{$borrowedBook->book->author}}
                             </td>
                             <td class="px-6 py-4 whitespace-nowrap">
-                                4:05PM 05/04/2026
+                                {{ $borrowedBook->created_at->format('g:ia m/d/Y') }}
                             </td>
                             <td class="px-6 py-4 whitespace-nowrap">
-                                4:05PM 05/04/2026
+                                {{ $borrowedBook->due_date->format('g:ia m/d/Y') }}
+                            </td>
+                            <td class="px-6 py-4 whitespace-nowrap">
+                                <button type="button" class="text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 me-2 mb-2 focus:outline-none">Read</button>
                             </td>
                         </tr>
+                        @endforeach
                     </tbody>
                 </table>
             </div>

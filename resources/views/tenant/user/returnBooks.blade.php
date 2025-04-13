@@ -71,50 +71,8 @@
             </table>
         </div>
         
-        <!-- Pending requests and My books -->
+        <!-- My books -->
         <div class="h-150 grid grid-cols-2 gap-4 mb-4">
-            <!-- Books available -->
-            <div class="h-full rounded-sm h-28 bg-gray-50 shadow-md overflow-y-auto overflow-x-auto">
-                <p class="text-lg p-4 text-gray-500">
-                Pending Requests
-                </p>
-
-                <!-- books table -->
-                <table class="w-full text-sm text-left rtl:text-right text-gray-500">
-                    <thead class="text-xs text-gray-700 uppercase bg-gray-200">
-                        <tr>
-                            <th scope="col" class="px-6 py-3 whitespace-nowrap">
-                                Book Title
-                            </th>
-                            <th scope="col" class="px-6 py-3 whitespace-nowrap">
-                                Author
-                            </th>
-                            <th scope="col" class="px-6 py-3 whitespace-nowrap">
-                                Registration Date
-                            </th>
-                            <th scope="col" class="px-6 py-3 whitespace-nowrap text-center">
-                                Action
-                            </th>
-                        </tr>
-                    </thead>
-                    <tbody>
-                        <tr class="bg-white border-b border-gray-200 hover:bg-gray-50">
-                            <td class="px-6 py-4">
-                                Pride and Prejudice Jane Austen.
-                            </td>
-                            <td class="px-6 py-4 whitespace-nowrap">
-                                Jane Austen
-                            </td>
-                            <td class="px-6 py-4 whitespace-nowrap">
-                                4:05PM 05/04/2026
-                            </td>
-                            <td class="px-6 py-4 whitespace-nowrap text-center">
-                                <button type="button" class="focus:outline-none text-white bg-red-700 hover:bg-red-800 focus:ring-4 focus:ring-red-300 font-medium rounded-lg text-sm px-5 py-2.5 me-2 mb-2">Cancel</button>
-                            </td>
-                        </tr>
-                    </tbody>
-                </table>
-            </div>
 
             <!-- Returned Books History-->
             <div class="h-full rounded-sm h-28 bg-gray-50 shadow-md overflow-y-auto overflow-x-auto">

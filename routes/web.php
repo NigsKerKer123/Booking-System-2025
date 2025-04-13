@@ -70,6 +70,7 @@ Route::prefix('admin')->group(function () {
 Route::middleware('student')->prefix('user')->group(function () {
     // Borrow books
     Route::get('/borrow', [UserBorrowBooksController::class, 'index'])->name('user.borrow.index');
+    Route::post('/borrow/store', [UserBorrowBooksController::class, 'store'])->name('user.borrow.store');
 
     // Return books
     Route::get('/return', [UserReturnController::class, 'index'])->name('user.return.index');
