@@ -13,6 +13,7 @@ use App\Http\Controllers\AdminSettingsController;
 use App\Http\Controllers\UserBorrowBooksController;
 use App\Http\Controllers\UserReturnController;
 use App\Http\Controllers\GoogleController;
+use App\Http\Controllers\GenerateReportsController;
 use GuzzleHttp\Middleware;
 
 Route::get('/', function () {
@@ -85,3 +86,6 @@ Route::get('auth/google/callback', [GoogleController::class, 'handleGoogleCallba
     ->name('tenant.auth.google.callback');
 
 Route::get('/logout', [GoogleController::class, 'logout'])->name('student.logout');
+
+// generate report
+Route::post('/generate', [GenerateReportsController::class, 'generateTenant'])->name('generateTenant');
