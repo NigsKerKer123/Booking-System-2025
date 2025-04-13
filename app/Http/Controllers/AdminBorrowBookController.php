@@ -49,22 +49,39 @@ class AdminBorrowBookController extends Controller
             $selectedBookIds = $request->selected_books;
 
             foreach ($selectedBookIds as $bookId) {
+                $book = Books::findOrFail($bookId);
+                $borrowedCount = BorrowBooks::where('book_id', $bookId)->count();
+                if ($borrowedCount >= $book->quantity) {
+                    return redirect()->back()->withErrors([
+                        'error' => "The book '{$book->title}' is currently out of stock."
+                    ]);
+                }
+                $alreadyBorrowed = BorrowBooks::where('student_id', $studentId)
+                                            ->where('book_id', $bookId)
+                                            ->exists();
+                if ($alreadyBorrowed) {
+                    return redirect()->back()->withErrors([
+                        'error' => "The student has already borrowed '{$book->title}'."
+                    ]);
+                }
                 BorrowBooks::create([
                     'student_id' => $studentId,
                     'book_id' => $bookId,
                     'due_date' => $dueDate
                 ]);
-
                 Borrow_logs::create([
                     'student_id' => $studentId,
                     'book_id' => $bookId,
                 ]);
             }
+
             return redirect()->back()->with('success', 'Books successfully borrowed by the student.');
-        
+
         } catch (\Exception $e) {
-            return $e;
-            return redirect()->back()->withErrors(['error' => 'An unexpected error occurred. Please try again later.']);
+            return redirect()->back()->withErrors([
+                'error' => 'An unexpected error occurred. Please try again later.',
+                'details' => $e->getMessage()
+            ]);
         }
     }
 }

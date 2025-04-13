@@ -23,12 +23,12 @@
             </div>
             <div class="z-50 hidden my-4 text-base list-none bg-[#561C24] divide-y divide-[#561C24] rounded-sm shadow-sm" id="dropdown-user">
               <div class="px-4 py-3" role="none">
-                <p class="text-sm text-white" role="none">
-                  Neil Sims
-                </p>
-                <p class="text-sm font-medium text-gray-400 truncate" role="none">
-                  neil.sims@flowbite.com
-                </p>
+              <p class="text-sm text-white" role="none">
+                {{ Auth::guard('students')->user()->name ?? 'Guest' }}
+              </p>
+              <p class="text-sm font-medium text-gray-400 truncate" role="none">
+                {{ Auth::guard('students')->user()->email ?? 'no-email@example.com' }}
+              </p>
               </div>
               <ul class="py-1" role="none">
                 </li>

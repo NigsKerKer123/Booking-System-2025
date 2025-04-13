@@ -54,7 +54,6 @@
                     <form action="{{route('user.borrow.store')}}" method="POST">
                         @csrf
                         <input type="hidden" name="book_id" value="{{$book->id}}">
-                        <input type="hidden" name="student_id" value="{{$studentId}}">
                         <tr class="bg-white border-b border-gray-200 hover:bg-gray-50">
                             <td class="px-6 py-4">
                                 {{$book->title}}

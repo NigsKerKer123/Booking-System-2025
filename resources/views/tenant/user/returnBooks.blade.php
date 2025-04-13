@@ -39,7 +39,7 @@
                             Author
                         </th>
                         <th scope="col" class="px-6 py-3 whitespace-nowrap">
-                            Registration Date
+                            Borrowed Date
                         </th>
                         <th scope="col" class="px-6 py-3 whitespace-nowrap">
                             Due Date
@@ -50,28 +50,35 @@
                     </tr>
                 </thead>
                 <tbody>
-                    <tr class="bg-white border-b border-gray-200 hover:bg-gray-50">
-                        <td class="px-6 py-4">
-                            Pride and Prejudice Jane Austen.
-                        </td>
-                        <td class="px-6 py-4 whitespace-nowrap">
-                            Jane Austen
-                        </td>
-                        <td class="px-6 py-4 whitespace-nowrap">
-                            4:05PM 05/04/2026
-                        </td>
-                        <td class="px-6 py-4 whitespace-nowrap">
-                            4:05PM 05/04/2026
-                        </td>
-                        <td class="px-6 py-4 whitespace-nowrap text-center">
-                        <button data-modal-hide="default-modal" type="button" class="text-white bg-green-700 hover:bg-green-800 focus:ring-4 focus:outline-none focus:ring-green-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center">Return</button>
-                        </td>
-                    </tr>
+                    @foreach($borrowedBooks as $borrowedBook)
+                    <form action="{{route('user.return.delete')}}" method="POST">
+                        @csrf
+                        @method('DELETE')
+                        <input type="hidden" name="book_id" value="{{$borrowedBook->id}}">
+                        <tr class="bg-white border-b border-gray-200 hover:bg-gray-50">
+                            <td class="px-6 py-4">
+                                {{$borrowedBook->book->title}}
+                            </td>
+                            <td class="px-6 py-4 whitespace-nowrap">
+                                {{$borrowedBook->book->author}}
+                            </td>
+                            <td class="px-6 py-4 whitespace-nowrap">
+                                {{ $borrowedBook->created_at->format('g:ia m/d/Y') }}
+                            </td>
+                            <td class="px-6 py-4 whitespace-nowrap">
+                                {{ $borrowedBook->due_date->format('g:ia m/d/Y') }}
+                            </td>
+                            <td class="px-6 py-4 whitespace-nowrap text-center">
+                            <button type="submit" class="text-white bg-green-700 hover:bg-green-800 focus:ring-4 focus:outline-none focus:ring-green-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center">Return</button>
+                            </td>
+                        </tr>
+                    </form>
+                    @endforeach
                 </tbody>
             </table>
         </div>
         
-        <!-- My books -->
+        <!-- return books -->
         <div class="h-150 grid grid-cols-2 gap-4 mb-4">
 
             <!-- Returned Books History-->
@@ -91,28 +98,24 @@
                                 Author
                             </th>
                             <th scope="col" class="px-6 py-3 whitespace-nowrap">
-                                Borrowed Date
-                            </th>
-                            <th scope="col" class="px-6 py-3 whitespace-nowrap">
-                                Due date
+                                Date
                             </th>
                         </tr>
                     </thead>
                     <tbody>
+                        @foreach($returnHistories as $returnHistory)
                         <tr class="bg-white border-b border-gray-200 hover:bg-gray-50">
                             <td class="px-6 py-4">
-                                Pride and Prejudice Jane Austen.
+                                {{$returnHistory->book->title}}
                             </td>
                             <td class="px-6 py-4 whitespace-nowrap">
-                                Jane Austen
+                                {{$returnHistory->book->author}}
                             </td>
                             <td class="px-6 py-4 whitespace-nowrap">
-                                4:05PM 05/04/2026
-                            </td>
-                            <td class="px-6 py-4 whitespace-nowrap">
-                                4:05PM 05/04/2026
+                                {{$returnHistory->created_at->format('g:ia m/d/Y') }}
                             </td>
                         </tr>
+                        @endforeach
                     </tbody>
                 </table>
             </div>

@@ -30,25 +30,38 @@ class UserBorrowBooksController extends Controller
             ->where('student_id', $studentId)
             ->get();
 
-        return view('tenant.user.borrowBooks', compact('books', 'borrowedBooks', 'studentId'));
+        return view('tenant.user.borrowBooks', compact('books', 'borrowedBooks'));
     }
 
     public function store(Request $request)
     {
         $request->validate([
-            'student_id' => 'required|exists:students,id',
-            'book_id' => 'required',
-            'book_id' => 'exists:books,id',
+            'book_id' => 'required|exists:books,id',
         ], [
-            'student_id.required' => 'Please select a student.',
-            'student_id.exists' => 'student does not exist.',
-            'book_id.exists' => 'selected book do not exist.',
+            'book_id.exists' => 'Selected book does not exist.',
         ]);
 
         try {
-            $dueDate = Carbon::now()->addWeek(); 
-            $studentId = $request->student_id;
+            $studentId = Auth::guard('students')->id();
             $book_id = $request->book_id;
+
+            $book = Books::findOrFail($book_id);
+
+            $borrowedCount = BorrowBooks::where('book_id', $book_id)->count();
+
+            if ($borrowedCount >= $book->quantity) {
+                return redirect()->back()->withErrors(['error' => 'This book is currently out of stock.']);
+            }
+
+            $alreadyBorrowed = BorrowBooks::where('book_id', $book_id)
+                                        ->where('student_id', $studentId)
+                                        ->exists();
+
+            if ($alreadyBorrowed) {
+                return redirect()->back()->withErrors(['error' => 'You have already borrowed this book.']);
+            }
+
+            $dueDate = Carbon::now()->addWeek(); 
 
             BorrowBooks::create([
                 'student_id' => $studentId,
@@ -61,8 +74,8 @@ class UserBorrowBooksController extends Controller
                 'book_id' => $book_id,
             ]);
 
-            return redirect()->back()->with('success', 'Books successfully borrowed');
-        
+            return redirect()->back()->with('success', 'Book successfully borrowed');
+
         } catch (\Exception $e) {
             return redirect()->back()->withErrors(['error' => 'An unexpected error occurred. Please try again later.']);
         }

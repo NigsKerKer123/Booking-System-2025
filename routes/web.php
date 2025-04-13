@@ -74,6 +74,7 @@ Route::middleware('student')->prefix('user')->group(function () {
 
     // Return books
     Route::get('/return', [UserReturnController::class, 'index'])->name('user.return.index');
+    Route::delete('/borrow/delete', [UserReturnController::class, 'destroy'])->name('user.return.delete');
 });
 
 // google auth
