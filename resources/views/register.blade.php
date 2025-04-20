@@ -26,33 +26,19 @@
             <!-- subdomain and subcription -->
             <div class="grid gap-6 mb-6 md:grid-cols-2">
                 <div>
-                    <label for="first_name" class="block mb-2 text-sm font-medium text-gray-900">Sub domain</label>
-                    <input type="text" id="first_name" class="border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5" required />
+                    <label for="subdomain" class="block mb-2 text-sm font-medium text-gray-900">Sub domain</label>
+                    <input type="text" id="subdomain" name="subdomain" class="border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5" required />
                 </div>
 
                 <div>
                     <label for="subscription" class="block mb-2 text-sm font-medium text-gray-900">Subscription</label>
-                    <select id="subscription" class="border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5">
+                    <select id="subscription" name="subscription" class="border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5">
                         <option selected>Select Subscription</option>
                         <option value="free">free</option>
                         <option value="pro">pro</option>
                     </select>
                 </div>
                 
-            </div>
-
-            <!-- Password -->
-            <div>
-                <label for="password" class="block mb-2 text-sm font-medium text-gray-700">Password</label>
-                <input type="password" id="password" name="password" required
-                    class="w-full px-4 py-2 text-sm border border-gray-300 rounded-lg focus:ring-blue-500 focus:border-blue-500" />
-            </div>
-
-            <!-- Confirm Password -->
-            <div>
-                <label for="password_confirmation" class="block mb-2 text-sm font-medium text-gray-700">Confirm Password</label>
-                <input type="password" id="password_confirmation" name="password_confirmation" required
-                    class="w-full px-4 py-2 text-sm border border-gray-300 rounded-lg focus:ring-blue-500 focus:border-blue-500" />
             </div>
 
             <!-- Submit -->

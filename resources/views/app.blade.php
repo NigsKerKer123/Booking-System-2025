@@ -24,7 +24,7 @@
     <body>
         <nav class="bg-[#561C24] border-gray-200">
             <div class="max-w-screen-xl flex flex-wrap items-center justify-between mx-auto p-4">
-                <a href="" class="flex items-center space-x-3 rtl:space-x-reverse">
+                <a href="/" class="flex items-center space-x-3 rtl:space-x-reverse">
                     <img src="{{asset('images/ReadSphere_Logo.png')}}" class="h-15" alt="Flowbite Logo" />
                     <span class="self-center text-2xl font-semibold whitespace-nowrap text-white">ReadSphere</span>
                 </a>
@@ -46,7 +46,7 @@
         <footer class="bg-[#561C24] shadow-sm">
             <div class="w-full max-w-screen-xl mx-auto p-4 md:py-8">
                 <div class="sm:flex sm:items-center sm:justify-between">
-                    <a href="" class="flex items-center mb-4 sm:mb-0 space-x-3 rtl:space-x-reverse">
+                    <a href="/" class="flex items-center mb-4 sm:mb-0 space-x-3 rtl:space-x-reverse">
                         <img src="{{asset('images/ReadSphere_Logo.png')}}" class="h-20" alt="Flowbite Logo" />
                         <span class="self-center text-2xl font-semibold whitespace-nowrap text-white">ReadSphere</span>
                     </a>
