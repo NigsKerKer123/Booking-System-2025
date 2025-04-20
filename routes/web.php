@@ -14,16 +14,15 @@ use App\Http\Controllers\UserBorrowBooksController;
 use App\Http\Controllers\UserReturnController;
 use App\Http\Controllers\GoogleController;
 use App\Http\Controllers\GenerateReportsController;
+use App\Http\Controllers\RegisterTenantController;
 use GuzzleHttp\Middleware;
 
 Route::get('/', function () {
     return view('welcome');
 });
 
-// tenant welcome page
-Route::get('/welcome', function () {
-    return view('tenant.welcome');
-});
+// central register page
+Route::get('/register', [RegisterTenantController::class, 'index'])->name('register');
 
 // landlord routes
 Route::prefix('landlord')->group(function () {
@@ -32,6 +31,11 @@ Route::prefix('landlord')->group(function () {
 
     // tenants
     Route::get('/tenants', [LandlordTenantController::class, 'index'])->name('landlord.tenants.index');
+});
+
+// tenant welcome page
+Route::get('/welcome', function () {
+    return view('tenant.welcome');
 });
 
 // admin routes

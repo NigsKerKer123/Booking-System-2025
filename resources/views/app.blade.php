@@ -4,7 +4,7 @@
         <meta charset="utf-8">
         <meta name="viewport" content="width=device-width, initial-scale=1">
 
-        <title>ReadSphere: Welcome to Online Booking System!</title>
+        <title>@yield('title', 'ReadSphere: Booking System Management')</title>
         <link rel="icon" href="{{ asset('images/ReadSphere_Logo.png') }}" type="image/x-icon">
 
         <!-- Fonts -->
@@ -22,73 +22,53 @@
         @endif
     </head>
     <body>
-    <nav class="bg-[#561C24] border-gray-200">
-        <div class="max-w-screen-xl flex flex-wrap items-center justify-between mx-auto p-4">
-            <a href="" class="flex items-center space-x-3 rtl:space-x-reverse">
-                <img src="{{asset('images/ReadSphere_Logo.png')}}" class="h-15" alt="Flowbite Logo" />
-                <span class="self-center text-2xl font-semibold whitespace-nowrap text-white">ReadSphere</span>
-            </a>
-            <div class="flex md:order-2 space-x-3 md:space-x-0 rtl:space-x-reverse">
-                <button data-collapse-toggle="navbar-cta" type="button" class="inline-flex items-center p-2 w-10 h-10 justify-center text-sm text-gray-500 rounded-lg md:hidden hover:bg-gray-100 focus:outline-none focus:ring-2 focus:ring-gray-200" aria-controls="navbar-cta" aria-expanded="false">
-                    <span class="sr-only">Open main menu</span>
-                    <svg class="w-5 h-5" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 17 14">
-                        <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M1 1h15M1 7h15M1 13h15"/>
-                    </svg>
-                </button>
-            </div>
-        </div>
-    </nav>
-    <section class="bg-center bg-no-repeat bg-gray-700 bg-blend-multiply" style="background-image: url({{ asset('images/library_background.jpg') }});">
-        <div class="px-4 mx-auto max-w-screen-xl text-center py-24 lg:py-56">
-            <h1 class="mb-4 text-4xl font-extrabold tracking-tight leading-none text-white md:text-5xl lg:text-6xl">
-                Welcome to Our Online Book Borrowing Library
-            </h1>
-            <h2 class="mb-4 text-2xl font-semibold text-gray-200 md:text-3xl">
-                A Multi-Tenant System Designed for Schools or Universities.
-            </h2>
-            <p class="mb-8 text-lg font-normal text-gray-300 lg:text-xl sm:px-16 lg:px-48">
-                Explore, borrow, and read your favorite books—all from the comfort of your home. Our Online Library makes it easy to borrow a wide range of books, from timeless classics to the latest bestsellers. With just a few clicks, you can have access to a world of stories and knowledge at your fingertips, whenever you need it.
-            </p>
-            <div class="flex flex-col space-y-4 sm:flex-row sm:justify-center sm:space-y-0">
-                <a href="{{route('register')}}" class="inline-flex justify-center items-center py-3 px-5 text-base font-medium text-center text-white rounded-lg bg-[#6D2932] hover:bg-[#561C24] focus:ring-4 focus:ring-blue-300 dark:focus:ring-blue-900">
-                    Get started
-                    <svg class="w-3.5 h-3.5 ms-2 rtl:rotate-180" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 14 10">
-                        <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M1 5h12m0 0L9 1m4 4L9 9"/>
-                    </svg>
-                </a>
-                <a href="#" class="inline-flex justify-center hover:text-gray-900 items-center py-3 px-5 sm:ms-4 text-base font-medium text-center text-white rounded-lg border border-white hover:bg-gray-100 focus:ring-4 focus:ring-gray-400">
-                    Learn more
-                </a>  
-            </div>
-        </div>
-    </section>
-
-    <footer class="bg-[#561C24] shadow-sm">
-        <div class="w-full max-w-screen-xl mx-auto p-4 md:py-8">
-            <div class="sm:flex sm:items-center sm:justify-between">
-                <a href="" class="flex items-center mb-4 sm:mb-0 space-x-3 rtl:space-x-reverse">
-                    <img src="{{asset('images/ReadSphere_Logo.png')}}" class="h-20" alt="Flowbite Logo" />
+        <nav class="bg-[#561C24] border-gray-200">
+            <div class="max-w-screen-xl flex flex-wrap items-center justify-between mx-auto p-4">
+                <a href="" class="flex items-center space-x-3 rtl:space-x-reverse">
+                    <img src="{{asset('images/ReadSphere_Logo.png')}}" class="h-15" alt="Flowbite Logo" />
                     <span class="self-center text-2xl font-semibold whitespace-nowrap text-white">ReadSphere</span>
                 </a>
-                <ul class="flex flex-wrap items-center mb-6 text-sm font-medium text-white sm:mb-0">
-                    <li>
-                        <a href="#" class="hover:underline me-4 md:me-6">About</a>
-                    </li>
-                    <li>
-                        <a href="#" class="hover:underline me-4 md:me-6">Privacy Policy</a>
-                    </li>
-                    <li>
-                        <a href="#" class="hover:underline me-4 md:me-6">Licensing</a>
-                    </li>
-                    <li>
-                        <a href="#" class="hover:underline">Contact</a>
-                    </li>
-                </ul>
+                <div class="flex md:order-2 space-x-3 md:space-x-0 rtl:space-x-reverse">
+                    <button data-collapse-toggle="navbar-cta" type="button" class="inline-flex items-center p-2 w-10 h-10 justify-center text-sm text-gray-500 rounded-lg md:hidden hover:bg-gray-100 focus:outline-none focus:ring-2 focus:ring-gray-200" aria-controls="navbar-cta" aria-expanded="false">
+                        <span class="sr-only">Open main menu</span>
+                        <svg class="w-5 h-5" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 17 14">
+                            <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M1 1h15M1 7h15M1 13h15"/>
+                        </svg>
+                    </button>
+                </div>
             </div>
-            <hr class="my-6 border-gray-200 sm:mx-auto lg:my-8" />
-            <span class="block text-sm text-white sm:text-center">© 2025 <a href="" class="hover:underline">ReadSphere</a>. All Rights Reserved.</span>
-        </div>
-    </footer>
+        </nav>
+
+        <main>
+            @yield('content')
+        </main>
+
+        <footer class="bg-[#561C24] shadow-sm">
+            <div class="w-full max-w-screen-xl mx-auto p-4 md:py-8">
+                <div class="sm:flex sm:items-center sm:justify-between">
+                    <a href="" class="flex items-center mb-4 sm:mb-0 space-x-3 rtl:space-x-reverse">
+                        <img src="{{asset('images/ReadSphere_Logo.png')}}" class="h-20" alt="Flowbite Logo" />
+                        <span class="self-center text-2xl font-semibold whitespace-nowrap text-white">ReadSphere</span>
+                    </a>
+                    <ul class="flex flex-wrap items-center mb-6 text-sm font-medium text-white sm:mb-0">
+                        <li>
+                            <a href="#" class="hover:underline me-4 md:me-6">About</a>
+                        </li>
+                        <li>
+                            <a href="#" class="hover:underline me-4 md:me-6">Privacy Policy</a>
+                        </li>
+                        <li>
+                            <a href="#" class="hover:underline me-4 md:me-6">Licensing</a>
+                        </li>
+                        <li>
+                            <a href="#" class="hover:underline">Contact</a>
+                        </li>
+                    </ul>
+                </div>
+                <hr class="my-6 border-gray-200 sm:mx-auto lg:my-8" />
+                <span class="block text-sm text-white sm:text-center">© 2025 <a href="" class="hover:underline">ReadSphere</a>. All Rights Reserved.</span>
+            </div>
+        </footer>
     </body>
 </html>
 
