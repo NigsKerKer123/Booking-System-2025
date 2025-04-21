@@ -70,10 +70,9 @@
             </div>
         </footer>
     </body>
-</html>
 
-    <!-- error toast -->
-    @if ($errors->any())
+      <!-- error toast -->
+      @if ($errors->any())
     <div class="fixed top-4 right-4 z-50">
         @foreach ($errors->all() as $index => $error)
             <div id="toast-danger-{{ $index }}" class="flex items-center w-full max-w-xs p-4 mb-4 text-gray-500 bg-white rounded-lg shadow-sm" role="alert">
@@ -132,3 +131,6 @@
         </script>
     </div>
     @endif
+</html>
+
+  

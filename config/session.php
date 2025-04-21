@@ -73,7 +73,7 @@ return [
     |
     */
 
-    'connection' => env('SESSION_CONNECTION'),
+    'connection' => env('SESSION_CONNECTION', null),
 
     /*
     |--------------------------------------------------------------------------
@@ -156,7 +156,7 @@ return [
     |
     */
 
-    'domain' => '.' , env('SESSION_DOMAIN'), 'localhost',
+    'domain' => '.' , env('SESSION_DOMAIN'), 'readsphere.com',
 
     /*
     |--------------------------------------------------------------------------

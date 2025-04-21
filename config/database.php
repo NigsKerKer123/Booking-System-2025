@@ -42,6 +42,21 @@ return [
             'synchronous' => null,
         ],
 
+        'landlord' => [
+            'driver' => 'mysql',
+            'host' => env('LANDLORD_DB_HOST', env('DB_HOST', '127.0.0.1')),
+            'port' => env('LANDLORD_DB_PORT', env('DB_PORT', '3306')),
+            'database' => env('LANDLORD_DB_DATABASE', env('DB_DATABASE', 'booking_system')),
+            'username' => env('LANDLORD_DB_USERNAME', env('DB_USERNAME', 'root')),
+            'password' => env('LANDLORD_DB_PASSWORD', env('DB_PASSWORD', '')),
+            'unix_socket' => env('DB_SOCKET', ''),
+            'charset' => 'utf8mb4',
+            'collation' => 'utf8mb4_unicode_ci',
+            'prefix' => '',
+            'strict' => true,
+            'engine' => null,
+        ],
+
         'mysql' => [
             'driver' => 'mysql',
             'url' => env('DB_URL'),

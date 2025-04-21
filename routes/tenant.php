@@ -41,7 +41,7 @@ Route::middleware([
     // tenant welcome page
     Route::get('/welcome', function () {
         return view('tenant.welcome');
-    });
+    })->name('welcome');
 
     // admin routes
     Route::prefix('admin')->group(function () {

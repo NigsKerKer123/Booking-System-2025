@@ -35,7 +35,7 @@ class RegisterTenantController extends Controller
                 'email' => $request->email,
                 'subdomain' => $request->subdomain,
                 'subscription' => $request->subscription,
-                'role' => "tenant",
+                'role' => 'tenant',
             ]);
 
             $tenant = Tenant::create([
@@ -52,7 +52,7 @@ class RegisterTenantController extends Controller
 
             DB::commit();
 
-            return redirect()->route('register')->with('success', 'Tenant registered successfully!');
+            return redirect()->route('welcome')->with('success', 'Tenant registered successfully!');
         } catch (ValidationException $e) {
             // Let Laravel handle validation errors normally
             throw $e;
