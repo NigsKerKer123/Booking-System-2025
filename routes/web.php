@@ -14,7 +14,7 @@ foreach (config('tenancy.central_domains') as $domain) {
         });
 
         Route::get('/register', [RegisterTenantController::class, 'index'])->name('register');
-        Route::post('/register', [RegisterTenantController::class, 'store'])->name('tenant.store');
+        Route::post('/register/store', [RegisterTenantController::class, 'store'])->name('tenant.store');
 
         // landlord routes
         Route::prefix('landlord')->group(function () {

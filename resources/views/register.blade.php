@@ -6,7 +6,7 @@
 <div class="flex items-center justify-center min-h-screen bg-gray-300">
     <div class="w-full max-w-md p-6 bg-white rounded-lg shadow-md">
         <h2 class="mb-6 text-2xl font-bold text-center text-gray-700">Create an Account</h2>
-        <form method="POST" action="" class="space-y-4">
+        <form action="{{route('tenant.store')}}" method="POST" class="space-y-4">
             @csrf
 
             <!-- Name -->
