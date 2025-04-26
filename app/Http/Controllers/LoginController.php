@@ -1,0 +1,33 @@
+<?php
+
+namespace App\Http\Controllers;
+
+use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
+
+class LoginController extends Controller
+{
+    public function index()
+    {
+        return view('login');
+    }
+
+    public function login(Request $request)
+    {
+        $credentials = $request->only('email', 'password');
+
+        if (Auth::attempt($credentials)) {
+            if (Auth::user()->role == 'tenant') {
+                return redirect()->route('admin.dashboard.index')->with('success', 'Login successful!');
+            }
+
+            if (Auth::user()->role == 'landlord') {
+                return redirect()->route('landlord.dashboard.index')->with('success', 'Login successful!');
+            }
+
+            return redirect()->intended('dashboard')->with('success', 'Login successful!');
+        }
+
+        return redirect()->back()->withErrors('Invalid credentials.');
+    }
+}

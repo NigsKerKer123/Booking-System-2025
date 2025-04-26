@@ -19,6 +19,7 @@ class DatabaseSeeder extends Seeder
             'name' => env('LANDLORD_USER_NAME'),
             'email' => env('LANDLORD_USER_EMAIL'),
             'role' => env('LANDLORD_USER_ROLE'),
+            'password' => bcrypt(env('LANDLORD_USER_PASSWORD')),
         ]);
     }
 }

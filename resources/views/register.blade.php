@@ -23,6 +23,13 @@
                     class="w-full px-4 py-2 text-sm border border-gray-300 rounded-lg focus:ring-blue-500 focus:border-blue-500" />
             </div>
 
+            <!-- password -->
+            <div>
+                <label for="password" class="block mb-2 text-sm font-medium text-gray-700">Password</label>
+                <input type="password" id="password" name="password" value="" required
+                    class="w-full px-4 py-2 text-sm border border-gray-300 rounded-lg focus:ring-blue-500 focus:border-blue-500" />
+            </div>
+
             <!-- subdomain and subcription -->
             <div class="grid gap-6 mb-6 md:grid-cols-2">
                 <div>
@@ -51,7 +58,7 @@
 
             <div class="text-sm text-center text-gray-500">
                 Already have an account?
-                <a href="" class="text-blue-600 hover:underline">Login</a>
+                <a href="{{route('login')}}" class="text-blue-600 hover:underline">Login</a>
             </div>
         </form>
     </div>

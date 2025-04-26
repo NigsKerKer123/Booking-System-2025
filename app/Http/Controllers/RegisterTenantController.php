@@ -23,6 +23,7 @@ class RegisterTenantController extends Controller
             $validated = $request->validate([
                 'name' => 'required|string|max:255',
                 'email' => 'required|email|unique:users,email',
+                'password' => 'required|string|min:8|confirmed',
                 'subdomain' => 'required|string|max:10',
                 'subscription' => 'required|in:free,pro',
             ]);
@@ -33,6 +34,7 @@ class RegisterTenantController extends Controller
             $user = User::create([
                 'name' => $request->name,
                 'email' => $request->email,
+                'password' => bcrypt($request->password),
                 'subdomain' => $request->subdomain,
                 'subscription' => $request->subscription,
                 'role' => 'tenant',

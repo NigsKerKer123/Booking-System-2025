@@ -44,7 +44,7 @@ Route::get('/welcome', function () {
 })->name('welcome');
 
 // admin routes
-Route::prefix('admin')->group(function () {
+Route::middleware('admin')->prefix('admin')->group(function () {
     // dashboard
     Route::get('/dashboard', [AdminDashboardController::class, 'index'])->name('admin.dashboard.index');
 
@@ -76,6 +76,7 @@ Route::prefix('admin')->group(function () {
     Route::get('/settings', [AdminSettingsController::class, 'index'])->name('admin.settings.index');
 });
 
+// Students here
 // user or student routes
 Route::middleware('student')->prefix('user')->group(function () {
     // Borrow books

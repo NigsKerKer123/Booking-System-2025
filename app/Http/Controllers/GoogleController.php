@@ -5,6 +5,8 @@ namespace App\Http\Controllers;
 use Laravel\Socialite\Facades\Socialite;
 use App\Models\Students;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Log;
+
 
 class GoogleController extends Controller
 {
@@ -25,7 +27,7 @@ class GoogleController extends Controller
         
             Auth::guard('students')->login($student);
             
-            return redirect()->route('user.borrow.index')->with('success', 'login successfully!');
+            return redirect()->route('admin.book.index')->with('success', 'login successfully!');
         } catch (\Exception $e) {
             return redirect('/welcome')->withErrors('Login failed');
         }
