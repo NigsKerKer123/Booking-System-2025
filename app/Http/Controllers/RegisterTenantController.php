@@ -9,6 +9,8 @@ use Illuminate\Auth\Events\Registered;
 use Illuminate\Support\Facades\Log;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Validation\ValidationException;
+use Illuminate\Support\Facades\Mail;
+use App\Mail\TenantRegisteredMail;
 
 class RegisterTenantController extends Controller
 {
@@ -19,52 +21,52 @@ class RegisterTenantController extends Controller
     public function store(Request $request)
     {
         try {
-            // Validate first
             $validated = $request->validate([
-                'name' => 'required|string|max:255',
-                'email' => 'required|email|unique:users,email',
-                'password' => 'required|string|min:8',
-                'subdomain' => 'required|string|max:10',
+                'name'         => 'required|string|max:255',
+                'email'        => 'required|email|unique:users,email',
+                'subdomain'    => 'required|string|max:10',
                 'subscription' => 'required|in:free,pro',
             ]);
-
-            // Wrap logic in DB transaction for safety
-            DB::beginTransaction();
+            
+            $randomDigits = mt_rand(10000000, 99999999);
+            $generatedPassword = "READ_{$randomDigits}_SPHERE";
+            $domain = $request->subdomain . '.readsphere.com:8000';
+            $subscription = $request->subscription;
 
             $user = User::create([
-                'name' => $request->name,
-                'email' => $request->email,
-                'subdomain' => $request->subdomain,
-                'password' => bcrypt($request->password),
+                'name'         => $request->name,
+                'email'        => $request->email,
+                'subdomain'    => $request->subdomain,
+                'password'     => bcrypt($generatedPassword),
                 'subscription' => $request->subscription,
-                'role' => 'tenant',
+                'role'         => 'tenant',
             ]);
-
+    
             $tenant = Tenant::create([
                 'name' => $request->name,
             ]);
-
+    
             $tenant->domains()->create([
                 'domain' => $request->subdomain,
             ]);
-
+    
             $user->tenants()->attach($tenant->id);
 
             event(new Registered($user));
 
-            DB::commit();
-
+            try {
+                Mail::to($user->email)->send(new TenantRegisteredMail($user, $generatedPassword, $subscription, $domain));
+            } catch (\Exception $mailEx) {
+                Log::error('Mail sending failed: ' . $mailEx->getMessage());
+                return redirect()->route('register')->withErrors('Something went wrong while registering the tenant.');
+            }
+        
             return redirect()->route('welcome')->with('success', 'Tenant registered successfully!');
         } catch (ValidationException $e) {
-            // Let Laravel handle validation errors normally
             throw $e;
         } catch (\Exception $e) {
-            DB::rollBack();
-
-            // Optionally log the error for debugging
             Log::error('Tenant registration failed: ' . $e->getMessage());
-
-            return redirect()->route('register')->with('error', 'Something went wrong while registering the tenant.');
+            return redirect()->route('register')->withErrors('Something went wrong while registering the tenant.');
         }
     }
 }

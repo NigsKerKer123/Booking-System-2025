@@ -5,6 +5,7 @@ use App\Http\Controllers\LandlordDashboardController;
 use App\Http\Controllers\LandlordTenantController;
 use App\Http\Controllers\RegisterTenantController;
 use App\Http\Controllers\LoginController;
+use Illuminate\Support\Facades\Mail;
 use GuzzleHttp\Middleware;
 
 //central domain routes

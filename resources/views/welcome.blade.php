@@ -36,6 +36,11 @@
                     </svg>
                 </button>
             </div>
+            <div class="flex md:order-3">
+                <a href="{{route('login')}}" class="inline-flex justify-center items-center py-3 px-5 text-base font-medium text-center text-white rounded-lg bg-[#6D2932] focus:ring-4 focus:ring-blue-300 dark:focus:ring-blue-900">
+                    Login
+                </a>
+            </div>
         </div>
     </nav>
     <section class="bg-center bg-no-repeat bg-gray-700 bg-blend-multiply" style="background-image: url({{ asset('images/library_background.jpg') }});">
