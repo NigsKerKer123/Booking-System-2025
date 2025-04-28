@@ -18,7 +18,8 @@ class LoginController extends Controller
 
         if (Auth::attempt($credentials)) {
             if (Auth::user()->role == 'tenant') {
-                return redirect()->route('admin.dashboard.index')->with('success', 'Login successful!');
+                $subdomain = Auth::user()->subdomain;
+                return redirect()->to("http://{$subdomain}.readsphere.com:8000/admin/dashboard")->with('success', 'Login successful!');
             }
 
             if (Auth::user()->role == 'landlord') {
@@ -29,5 +30,11 @@ class LoginController extends Controller
         }
 
         return redirect()->back()->withErrors('Invalid credentials.');
+    }
+
+    public function logout()
+    {
+        Auth::logout();
+        return redirect()->route('welcome')->with('success', 'Logout successful!');
     }
 }

@@ -15,6 +15,7 @@ return Application::configure(basePath: dirname(__DIR__))
             'student' => \App\Http\Middleware\StudentAuth::class,
             'admin' => \App\Http\Middleware\AdminAuth::class,
             'redirect' => \App\Http\Middleware\RedirectIfAuthenticated::class,
+            'landlord' => \App\Http\Middleware\LandlordAuth::class,
         ]);
     })
     ->withExceptions(function (Exceptions $exceptions) {

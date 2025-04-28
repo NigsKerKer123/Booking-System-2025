@@ -15,6 +15,7 @@ return new class extends Migration
             $table->id();
             $table->string('name');
             $table->string('email')->unique();
+            $table->string('subdomain')->nullable();
             $table->string('password');
             $table->enum('role', ['landlord', 'tenant']);
             $table->enum('subscription', ['free', 'pro'])->nullable();

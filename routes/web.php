@@ -18,17 +18,26 @@ foreach (config('tenancy.central_domains') as $domain) {
             Route::post('/register/store', [RegisterTenantController::class, 'store'])->name('tenant.store');
 
             Route::get('/', function () {
-            return view('welcome');
+            return redirect()->route('welcome');
+            });
+
+            Route::get('/welcome', function () {
+                return view('welcome');
             })->name('welcome');
         });
 
+        Route::get('/logout', [LoginController::class, 'logout'])->name('logout');
+
         // landlord routes
-        Route::prefix('landlord')->group(function () {
+
+        Route::middleware('landlord')->prefix('landlord')->group(function () {
             // dashboard
             Route::get('/dashboard', [LandlordDashboardController::class, 'index'])->name('landlord.dashboard.index');
 
             // tenants
             Route::get('/tenants', [LandlordTenantController::class, 'index'])->name('landlord.tenants.index');
         });
+
+
     });
 }

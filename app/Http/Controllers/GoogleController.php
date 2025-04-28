@@ -27,7 +27,7 @@ class GoogleController extends Controller
         
             Auth::guard('students')->login($student);
             
-            return redirect()->route('admin.book.index')->with('success', 'login successfully!');
+            return redirect()->route('user.borrow.index')->with('success', 'login successfully!');
         } catch (\Exception $e) {
             return redirect('/welcome')->withErrors('Login failed');
         }

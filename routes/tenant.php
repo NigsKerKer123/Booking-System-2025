@@ -95,7 +95,7 @@ Route::get('auth/google', [GoogleController::class, 'redirectToGoogle'])
 Route::get('auth/google/callback', [GoogleController::class, 'handleGoogleCallback'])
     ->name('tenant.auth.google.callback');
 
-Route::get('/logout', [GoogleController::class, 'logout'])->name('student.logout');
+Route::get('/logout/student', [GoogleController::class, 'logout'])->name('student.logout');
 
 // generate report
 Route::post('/generate', [GenerateReportsController::class, 'generateTenant'])->name('generateTenant');
