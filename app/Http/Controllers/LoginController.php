@@ -17,7 +17,12 @@ class LoginController extends Controller
         $credentials = $request->only('email', 'password');
 
         if (Auth::attempt($credentials)) {
+            $user = Auth::user();
             if (Auth::user()->role == 'tenant') {
+                if ($user->expiration_date->isPast()) {
+                    Auth::logout();
+                    return redirect()->back()->withErrors('Your subscription has expired.');
+                }
                 $subdomain = Auth::user()->subdomain;
                 return redirect()->to("http://{$subdomain}.readsphere.com:8000/admin/dashboard")->with('success', 'Login successful!');
             }

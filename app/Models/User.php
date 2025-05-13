@@ -27,7 +27,8 @@ class User extends Authenticatable
         'subscription',
         'role',
         'logo_name',
-        'color_hex'
+        'color_hex',
+        'expiration_date',
 
     ];
 
@@ -51,6 +52,7 @@ class User extends Authenticatable
         return [
             'email_verified_at' => 'datetime',
             'password' => 'hashed',
+            'expiration_date' => 'datetime',
         ];
     }
 

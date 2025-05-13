@@ -32,13 +32,9 @@ foreach (config('tenancy.central_domains') as $domain) {
         // landlord routes
 
         Route::middleware('landlord')->prefix('landlord')->group(function () {
-            // dashboard
             Route::get('/dashboard', [LandlordDashboardController::class, 'index'])->name('landlord.dashboard.index');
-
-            // tenants
             Route::get('/tenants', [LandlordTenantController::class, 'index'])->name('landlord.tenants.index');
+            Route::post('/tenants/store', [LandlordTenantController::class, 'store'])->name('landlord.tenants.store');
         });
-
-
     });
 }

@@ -21,6 +21,7 @@ return new class extends Migration
             $table->enum('subscription', ['free', 'pro'])->nullable();
             $table->string('logo_name')->nullable();
             $table->string('color_hex')->nullable();
+            $table->date('expiration_date')->nullable();
             $table->timestamps();
         });
 

@@ -32,6 +32,7 @@ class RegisterTenantController extends Controller
             $generatedPassword = "READ_{$randomDigits}_SPHERE";
             $domain = $request->subdomain . '.readsphere.com:8000';
             $subscription = $request->subscription;
+            $expiration_date = $subscription === 'free' ? now()->addDays(3) : now()->addDays(30);
 
             $user = User::create([
                 'name'         => $request->name,
@@ -40,6 +41,7 @@ class RegisterTenantController extends Controller
                 'password'     => bcrypt($generatedPassword),
                 'subscription' => $request->subscription,
                 'role'         => 'tenant',
+                'expiration_date' => $expiration_date,
             ]);
     
             $tenant = Tenant::create([
@@ -61,7 +63,7 @@ class RegisterTenantController extends Controller
                 return redirect()->route('register')->withErrors('Something went wrong while registering the tenant.');
             }
         
-            return redirect()->route('welcome')->with('success', 'Tenant registered successfully!');
+            return redirect()->route('login')->with('success', 'Tenant registered successfully!');
         } catch (ValidationException $e) {
             throw $e;
         } catch (\Exception $e) {
