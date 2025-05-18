@@ -15,7 +15,8 @@ class LandlordTenantController extends Controller
 {
     public function index()
     {
-        return view('landlord.tenants');
+        $tenants = User::where('role', 'tenant')->get();
+        return view('landlord.tenants', compact('tenants'));
     }
 
     public function store(Request $request)

@@ -48,9 +48,6 @@ Route::middleware('admin')->prefix('admin')->group(function () {
     // dashboard
     Route::get('/dashboard', [AdminDashboardController::class, 'index'])->name('admin.dashboard.index');
 
-    // account
-    Route::get('/account', [AdminAccountController::class, 'index'])->name('admin.account.index');
-
     //student
     Route::get('/student', [AdminStudentController::class, 'index'])->name('admin.student.index');
     Route::post('/student/store', [AdminStudentController::class, 'store'])->name('admin.student.store');
@@ -74,6 +71,9 @@ Route::middleware('admin')->prefix('admin')->group(function () {
 
     //settings
     Route::get('/settings', [AdminSettingsController::class, 'index'])->name('admin.settings.index');
+    Route::post('/settings/change-password', [AdminSettingsController::class, 'changePass'])->name('admin.settings.change-password');
+    Route::post('/settings/customize', [AdminSettingsController::class, 'customize'])->name('admin.settings.customize');
+    Route::post('/settings/pro', [AdminSettingsController::class, 'pro'])->name('admin.settings.pro');
 });
 
 // Students here

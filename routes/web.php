@@ -19,7 +19,7 @@ foreach (config('tenancy.central_domains') as $domain) {
             Route::post('/register/store', [RegisterTenantController::class, 'store'])->name('tenant.store');
 
             Route::get('/', function () {
-            return redirect()->route('welcome');
+                return redirect()->route('welcome');
             });
 
             Route::get('/welcome', function () {
@@ -33,6 +33,8 @@ foreach (config('tenancy.central_domains') as $domain) {
 
         Route::middleware('landlord')->prefix('landlord')->group(function () {
             Route::get('/dashboard', [LandlordDashboardController::class, 'index'])->name('landlord.dashboard.index');
+             Route::post('/tenants/generateReports', [LandlordDashboardController::class, 'generateReports'])->name('landlord.tenants.generateReports');
+
             Route::get('/tenants', [LandlordTenantController::class, 'index'])->name('landlord.tenants.index');
             Route::post('/tenants/store', [LandlordTenantController::class, 'store'])->name('landlord.tenants.store');
         });

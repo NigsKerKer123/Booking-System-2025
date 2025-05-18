@@ -1,6 +1,6 @@
 @extends('app')
 
-@section('title', 'Register')
+@section('title', 'Login')
 
 @section('content')
 <section class="bg-gray-100 min-h-screen flex items-center justify-center">
